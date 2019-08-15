@@ -2,15 +2,14 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>分类 - Xiao</title>
+<title>标签: elk,logstash - Xiao</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="elk,logstash">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Xiao">
-<meta property="og:url" content="http://akoala.me/categories/index.html">
+<meta property="og:url" content="http://akoala.me/tags/elk-logstash/index.html">
 <meta property="og:site_name" content="Xiao">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://akoala.me/images/og_image.png">
@@ -98,7 +97,7 @@
                 
                 <a class="navbar-item" href="/archives">归档</a>
                 
-                <a class="navbar-item is-active" href="/categories">分类</a>
+                <a class="navbar-item" href="/categories">分类</a>
                 
                 <a class="navbar-item" href="/tags">标签</a>
                 
@@ -122,19 +121,75 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            
-            </ul>
-        </div>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">elk,logstash</a></li>
+        </ul>
+        </nav>
     </div>
-</div></div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-14T09:23:29.000Z">2019-08-14</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 272 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/14/logstash 分页优化/">logstash input-jdbc 分页性能优化问题</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
+
+<h1 id="解决办法：修改源码"><a href="#解决办法：修改源码" class="headerlink" title="解决办法：修改源码"></a>解决办法：修改源码</h1><ul>
+<li>文件位置   <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    logstash-7.2.0\vendor\bundle\jruby\2.5.0\gems\logstash-input-jdbc-4.3.13\lib\logstash\plugin_mixins\jdbc\jdbc.rb</span><br><span class="line">``` </span><br><span class="line">- 添加参数</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>// line:100 =&gt; config</p>
+<h1 id="开启子查询分页-boole-2018-03-30"><a href="#开启子查询分页-boole-2018-03-30" class="headerlink" title="开启子查询分页 @boole 2018-03-30"></a>开启子查询分页 @boole 2018-03-30</h1><p>config :subquery_paging_enabled, :validate =&gt; :boolean, :default =&gt; false</p>
+<h1 id="总数sql，结果集列名为sum。for-example-select-count-as-sum-from-goods-boole-2018-03-30"><a href="#总数sql，结果集列名为sum。for-example-select-count-as-sum-from-goods-boole-2018-03-30" class="headerlink" title="总数sql，结果集列名为sum。for example select count(*) as sum from goods @boole 2018-03-30"></a>总数sql，结果集列名为sum。for example <code>select count(*) as sum from goods</code> @boole 2018-03-30</h1><p>config :sum_statement, :validate =&gt; :string</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 修改方法</span><br></pre></td></tr></table></figure>
+
+<p>// line:254 =&gt; perform_query<br>private<br>    def perform_query(query)<br>        #subquery paging @boole 2018-03-30<br>        if @subquery_paging_enabled<br>          @logger.info(“################### subquery paging optimization ################”)<br>          data_sum = @database[@sum_statement].get(:sum)<br>          @logger.info(“data_sum=#{data_sum}”)<br>          data_offset = 0<br>            while data_offset &lt; data_sum do<br>                @logger.info(“data_offset=#{data_offset}”)<br>                sub_page_query = @database[@statement_duplicate, symbolized_params({“data_offset” =&gt; data_offset, “jdbc_page_size” =&gt; @jdbc_page_size})]<br>                sub_page_query.each do |row|<br>                yield row<br>            end<br>            data_offset += @jdbc_page_size<br>        end<br>        elsif @jdbc_paging_enabled<br>        query.each_page(@jdbc_page_size) do |paged_dataset|<br>          paged_dataset.each do |row|<br>            yield row<br>          end<br>        end<br>      else<br>        query.each do |row|<br>          yield row<br>        end<br>      end<br>    end</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 配置logstash.conf  </span><br><span class="line">sql中使用`:data_offset`和`:jdbc_page_size`进行分页</span><br></pre></td></tr></table></figure>
+
+<p>statement =&gt; “SELECT * FROM ip_bundle_data_20190813 limit :data_offset,:jdbc_page_size”<br>subquery_paging_enabled =&gt; “true”<br>sum_statement =&gt; “select count(*) as <code>count</code> from ip_bundle_data_20190813”<br>```</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
                 
 
 
