@@ -3,14 +3,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: mysql - A KOALA</title>
+<title>标签: jar - A KOALA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="A KOALA">
-<meta property="og:url" content="http://akoala.me/tags/mysql/index.html">
+<meta property="og:url" content="http://akoala.me/tags/jar/index.html">
 <meta property="og:site_name" content="A KOALA">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://akoala.me/images/og_image.png">
@@ -142,7 +142,7 @@ var _hmt = _hmt || [];
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">mysql</a></li>
+            <li class="is-active"><a href="#" aria-current="page">jar</a></li>
         </ul>
         </nav>
     </div>
@@ -154,7 +154,7 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-20T06:15:19.000Z">2019-08-20</time>
+                <time class="level-item has-text-grey" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/code/">code</a>
@@ -164,11 +164,11 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 86 个字)
+                    2 分钟 读完 (大约 243 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/20/mysql导入大文件失败解决方法/" class="leancloud-visitors view" data-flag-title="mysql导入大文件失败解决方法">
+                <!-- <span id="/2019/08/26/windows-运行关闭jar包cmd脚本/" class="leancloud-visitors view" data-flag-title="windows-运行关闭jar包cmd脚本">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
@@ -179,19 +179,18 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/20/mysql导入大文件失败解决方法/">mysql导入大文件失败解决方法</a>
+                <a class="has-link-black-ter" href="/2019/08/26/windows-运行关闭jar包cmd脚本/">windows-运行关闭jar包cmd脚本</a>
             
         </h1>
         <div class="content">
-            <h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>修改<code>/etc/my.conf</code>,在以指定区域新增以下行</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">#### 避免导入失败</span><br><span class="line">max_allowed_packet = 200M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqlhotcopy]</span><br><span class="line"></span><br><span class="line">interactive-timeout=28800000</span><br><span class="line">wait_timeout=28800000</span><br><span class="line">#### 避免导入失败</span><br></pre></td></tr></table></figure>
+            <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|--web</span><br><span class="line">    |-- appname.txt     // 存放jar包名字</span><br><span class="line">    |-- xxx.jar         //  jar包</span><br><span class="line">    |-- run.bat         // 前台启动脚本</span><br><span class="line">    |-- run-demo.bat    // 后台启动脚本</span><br><span class="line">    |-- stop.bat        // 停止脚本</span><br></pre></td></tr></table></figure>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/20/mysql导入大文件失败解决方法/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/08/26/windows-运行关闭jar包cmd脚本/#more">阅读更多</a>
                 </div>
             </div>
         </div>
