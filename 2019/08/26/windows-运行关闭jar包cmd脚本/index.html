@@ -17,7 +17,7 @@
 <meta property="og:description" content="项目结构123456|--web    |-- appname.txt     // 存放jar包名字    |-- xxx.jar         //  jar包    |-- run.bat         // 前台启动脚本    |-- run-demo.bat    // 后台启动脚本    |-- stop.bat        // 停止脚本">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://akoala.me/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-26T07:01:39.587Z">
+<meta property="og:updated_time" content="2019-08-29T02:28:16.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows-运行关闭jar包cmd脚本">
 <meta name="twitter:description" content="项目结构123456|--web    |-- appname.txt     // 存放jar包名字    |-- xxx.jar         //  jar包    |-- run.bat         // 前台启动脚本    |-- run-demo.bat    // 后台启动脚本    |-- stop.bat        // 停止脚本">
@@ -207,8 +207,8 @@ var _hmt = _hmt || [];
 <h1 id="停止脚本"><a href="#停止脚本" class="headerlink" title="停止脚本"></a>停止脚本</h1><p>注：<code>&quot;C:\Program Files\Java\jdk1.8.0_131\bin\jps&quot;</code> 为jdk工具包</p>
 <figure class="highlight cmd hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-built_in">echo</span> off</span><br><span class="line">:: 找到jar的pid进程，并杀死</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%j</span> <span class="hljs-keyword">in</span> ('<span class="hljs-built_in">findstr</span> .* appname.txt') <span class="hljs-keyword">do</span> (</span><br><span class="line">	<span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> ('"C:\Program Files\Java\jdk1.<span class="hljs-number">8</span>.<span class="hljs-number">0</span>_131\bin\jps" -l ^| <span class="hljs-built_in">findstr</span> <span class="hljs-variable">%%j</span>') <span class="hljs-keyword">do</span> (</span><br><span class="line">		<span class="hljs-built_in">set</span> n=<span class="hljs-variable">%%i</span></span><br><span class="line">	)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">taskkill</span> /f /pid <span class="hljs-variable">%n%</span></span><br><span class="line"><span class="hljs-built_in">set</span> n=</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">exit</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href https: www.jianshu.com p bcffbc009a79"">win bat脚本 后台运行jar包</a></p>
-<p><a href https: www.iteye.com blog chainhou-1872938"">获取当前用户所有java进程及jps命令的实现</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.jianshu.com/p/bcffbc009a79" target="_blank" rel="noopener">win bat脚本 后台运行jar包</a></p>
+<p><a href="https://www.iteye.com/blog/chainhou-1872938" target="_blank" rel="noopener">获取当前用户所有java进程及jps命令的实现</a></p>
 
         </div>
         
