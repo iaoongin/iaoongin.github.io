@@ -154,6 +154,69 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/code/">code</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 177 个字)
+                </span>
+                
+
+                <!-- <span id="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="leancloud-visitors view" data-flag-title="spring中将配置文件的属性注入到静态属性里">
+                    <em class="post-meta-item-text">阅读量 </em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span> -->
+
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/">spring中将配置文件的属性注入到静态属性里</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>如在工具类中，不想将该工具类呗spring管理，通过引用其他类的的静态属性获取值。</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#局域网地址</span><br><span class="line">file.lanServer=\\\\DESKTOP-3FE3ORR\\app\\</span><br><span class="line">#app下载地址</span><br><span class="line">file.remoteServer=http://127.0.0.1:8080/app/</span><br><span class="line">file.fileUploadDir=H:/vadx</span><br><span class="line">file.relatePath=/vadx/app</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建类-如文件路径配置"><a href="#新建类-如文件路径配置" class="headerlink" title="新建类, 如文件路径配置"></a>新建类, 如文件路径配置</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Component</span></span><br><span class="line"><span class="hljs-meta">@Getter</span></span><br><span class="line"><span class="hljs-meta">@Setter</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileProp</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String remoteServer;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String lanServer;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String fileUploadDir;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String relatePath;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.remoteServer&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRemoteServer</span><span class="hljs-params">(String remoteServer)</span> </span>&#123;</span><br><span class="line">        FileProp.remoteServer = remoteServer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.lanServer&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLanServer</span><span class="hljs-params">(String lanServer)</span> </span>&#123;</span><br><span class="line">        FileProp.lanServer = lanServer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.fileUploadDir&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFileUploadDir</span><span class="hljs-params">(String fileUploadDir)</span> </span>&#123;</span><br><span class="line">        FileProp.fileUploadDir = fileUploadDir;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.relatePath&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRelatePath</span><span class="hljs-params">(String relatePath)</span> </span>&#123;</span><br><span class="line">        FileProp.relatePath = relatePath;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用，在工具类中使用"><a href="#使用，在工具类中使用" class="headerlink" title="使用，在工具类中使用"></a>使用，在工具类中使用</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Slf</span>4j</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UploadFileUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//项目前缀路径</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String destFile = FileProp.fileUploadDir;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time>
                 
                 <div class="level-item">
@@ -592,7 +655,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        8
                     </p>
                 </div>
             </div>
@@ -612,7 +675,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        10
+                        11
                     </p>
                 </div>
             </div>
@@ -634,7 +697,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
     </div>
 </div>
 
@@ -653,7 +716,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">code</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li>
             </ul>
@@ -668,6 +731,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/08/">
