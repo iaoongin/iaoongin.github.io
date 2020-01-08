@@ -8,19 +8,16 @@
 
 
 
-    <meta name="description" content="项目结构123456|--web    |-- appname.txt     // 存放jar包名字    |-- xxx.jar         //  jar包    |-- run.bat         // 前台启动脚本    |-- run-demo.bat    // 后台启动脚本    |-- stop.bat        // 停止脚本">
-<meta name="keywords" content="jar,windows,cmd">
+    <meta name="keywords" content="jar,windows,cmd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows-运行关闭jar包cmd脚本">
 <meta property="og:url" content="https://yffjglcms.com/2019/08/26/windows-运行关闭jar包cmd脚本/index.html">
 <meta property="og:site_name" content="雨纷纷——旧故里草木深">
-<meta property="og:description" content="项目结构123456|--web    |-- appname.txt     // 存放jar包名字    |-- xxx.jar         //  jar包    |-- run.bat         // 前台启动脚本    |-- run-demo.bat    // 后台启动脚本    |-- stop.bat        // 停止脚本">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-29T02:34:36.334Z">
+<meta property="og:updated_time" content="2020-01-08T06:29:03.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows-运行关闭jar包cmd脚本">
-<meta name="twitter:description" content="项目结构123456|--web    |-- appname.txt     // 存放jar包名字    |-- xxx.jar         //  jar包    |-- run.bat         // 前台启动脚本    |-- run-demo.bat    // 后台启动脚本    |-- stop.bat        // 停止脚本">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -172,7 +169,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 243 个字)
+                    2 分钟 读完 (大约 250 个字)
                 </span>
                 
 
@@ -196,9 +193,10 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|--web</span><br><span class="line">    |-- appname.txt     // 存放jar包名字</span><br><span class="line">    |-- xxx.jar         //  jar包</span><br><span class="line">    |-- run.bat         // 前台启动脚本</span><br><span class="line">    |-- run-demo.bat    // 后台启动脚本</span><br><span class="line">    |-- stop.bat        // 停止脚本</span><br></pre></td></tr></table></figure>
-
+            <p><img src="https://i.loli.net/2020/01/08/m9aWsZgrMkCXnxG.jpg" alt></p>
 <a id="more"></a>
+
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|--web</span><br><span class="line">    |-- appname.txt     // 存放jar包名字</span><br><span class="line">    |-- xxx.jar         //  jar包</span><br><span class="line">    |-- run.bat         // 前台启动脚本</span><br><span class="line">    |-- run-demo.bat    // 后台启动脚本</span><br><span class="line">    |-- stop.bat        // 停止脚本</span><br></pre></td></tr></table></figure>
 
 <h1 id="前台启动脚本"><a href="#前台启动脚本" class="headerlink" title="前台启动脚本"></a>前台启动脚本</h1><figure class="highlight cmd hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">chcp</span> <span class="hljs-number">65001</span></span><br><span class="line"><span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%j</span> <span class="hljs-keyword">in</span> ('<span class="hljs-built_in">findstr</span> .* appname.txt') <span class="hljs-keyword">do</span> (</span><br><span class="line">	<span class="hljs-built_in">title</span> <span class="hljs-variable">%%j</span></span><br><span class="line">	java -jar -Dfile.encoding=UTF-8 -Dlogging.config=config/logback.xml -Dspring.profiles.active=pro -Dmybatis-plus.mapper-locations=file:config/mapper/*.xml "%%j" -Xms50m -Xmx1024m</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -510,7 +508,7 @@ var _hmt = _hmt || [];
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2019 yffjglcms&nbsp;
+                    &copy; 2020 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                     
                     <br>

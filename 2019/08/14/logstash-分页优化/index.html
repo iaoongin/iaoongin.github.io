@@ -8,19 +8,16 @@
 
 
 
-    <meta name="description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
-<meta name="keywords" content="elk,logstash">
+    <meta name="keywords" content="elk,logstash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logstash input-jdbc 分页性能优化问题">
 <meta property="og:url" content="https://yffjglcms.com/2019/08/14/logstash-分页优化/index.html">
 <meta property="og:site_name" content="雨纷纷——旧故里草木深">
-<meta property="og:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
 <meta property="og:updated_time" content="2019-08-16T02:10:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logstash input-jdbc 分页性能优化问题">
-<meta name="twitter:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -172,7 +169,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 272 个字)
+                    2 分钟 读完 (大约 279 个字)
                 </span>
                 
 
@@ -196,10 +193,11 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
-
+            <p><img src="https://i.loli.net/2020/01/08/khoDBwpMKAb4nJO.jpg" alt></p>
 <a id="more"></a>
+
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
 
 <h1 id="解决办法：修改源码"><a href="#解决办法：修改源码" class="headerlink" title="解决办法：修改源码"></a>解决办法：修改源码</h1><h2 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a>文件位置</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logstash-7.2.0\vendor\bundle\jruby\2.5.0\gems\logstash-input-jdbc-4.3.13\lib\logstash\plugin_mixins\jdbc\jdbc.rb</span><br></pre></td></tr></table></figure>
 
@@ -506,7 +504,7 @@ var _hmt = _hmt || [];
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2019 yffjglcms&nbsp;
+                    &copy; 2020 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                     
                     <br>

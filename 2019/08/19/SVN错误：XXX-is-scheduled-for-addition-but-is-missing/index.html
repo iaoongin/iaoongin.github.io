@@ -8,19 +8,16 @@
 
 
 
-    <meta name="description" content="解决方式告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。 xxx 必须是全路径 1svn revert xxx --depth infinity  如 1svn revert H:\abc\config\feign --depth infinity">
-<meta name="keywords" content="svn">
+    <meta name="keywords" content="svn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVN错误：XXX is scheduled for addition, but is missing">
 <meta property="og:url" content="https://yffjglcms.com/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/index.html">
 <meta property="og:site_name" content="雨纷纷——旧故里草木深">
-<meta property="og:description" content="解决方式告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。 xxx 必须是全路径 1svn revert xxx --depth infinity  如 1svn revert H:\abc\config\feign --depth infinity">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-20T06:19:17.532Z">
+<meta property="og:updated_time" content="2020-01-08T06:27:48.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVN错误：XXX is scheduled for addition, but is missing">
-<meta name="twitter:description" content="解决方式告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。 xxx 必须是全路径 1svn revert xxx --depth infinity  如 1svn revert H:\abc\config\feign --depth infinity">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -172,7 +169,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 278 个字)
+                    2 分钟 读完 (大约 285 个字)
                 </span>
                 
 
@@ -196,14 +193,14 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。</p>
+            <p><img src="https://i.loli.net/2020/01/08/khoDBwpMKAb4nJO.jpg" alt></p>
+<a id="more"></a>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。</p>
 <p>xxx 必须是全路径</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert xxx --depth infinity</span><br></pre></td></tr></table></figure>
 
 <p>如</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert H:\abc\config\feign --depth infinity</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
 
 <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>发生在 <code>copy to branch or tag</code>时</p>
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>使用svn标记了将要提交的文件，此时被你删除了，再进行提交的时候，就会找不到。</p>
@@ -510,7 +507,7 @@ var _hmt = _hmt || [];
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2019 yffjglcms&nbsp;
+                    &copy; 2020 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                     
                     <br>
