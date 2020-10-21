@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: A KOALA
+title: 雨纷纷——旧故里草木深
 subtitle:
 description:
 keywords:
-author: A KOALA
+author: yffjglcms
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://akoala.me/
+url: https://yffjglcms.com/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,12 +78,24 @@ theme: icarus
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/iaoongin/iaoongin.github.io
-  branch: master
+  # type: git
+  # repo: git@github.com:iaoongin/iaoongin.github.io.git
+  # branch: master
   # type: git
   # repo: https://gitee.com/iaoongin/iaoongin.gitee.io
   # branch: master
+
+
+
+  # type: sftp
+  # host: 34.92.112.152
+  # user: yst-pc
+  # # pass: 
+  # remotePath: /opt/module/www/blog
+  # port: 22
+  # privateKey: D:\Users\yst\文档\NetSarang Computer\6\Xshell\Sessions\yst-pc
+  # # passphrase: [passphrase]
+  # # agent: [path/to/agent/socket]
 
 live2d:
   enable: true

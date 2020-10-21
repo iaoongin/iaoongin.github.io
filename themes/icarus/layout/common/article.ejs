@@ -28,6 +28,12 @@
                     <%= `${ time.locale(get_config('language', 'en')).humanize() } ${ __('article.read')} (${ __('article.about') } ${ words } ${ __('article.words') })` %>
                 </span>
                 <% } %>
+
+                <!-- <span id="<%- url_for(post.path) %>" class="leancloud-visitors view" data-flag-title="<%= post.title %>">
+                    <em class="post-meta-item-text">阅读量 </em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span> -->
+
                 <% if (!index && (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false)) { %>
                 <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
                     <i class="far fa-eye"></i>
