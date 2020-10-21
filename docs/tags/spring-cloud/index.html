@@ -3,21 +3,19 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>SVN错误：XXX is scheduled for addition, but is missing - 雨纷纷—旧故里草木深2</title>
+<title>标签: spring cloud - 雨纷纷—旧故里草木深2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="svn">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SVN错误：XXX is scheduled for addition, but is missing">
-<meta property="og:url" content="https://yffjglcms.com/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="雨纷纷—旧故里草木深2">
+<meta property="og:url" content="https://yffjglcms.com/tags/spring-cloud/index.html">
 <meta property="og:site_name" content="雨纷纷—旧故里草木深2">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-08T06:27:48.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SVN错误：XXX is scheduled for addition, but is missing">
+<meta name="twitter:title" content="雨纷纷—旧故里草木深2">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -113,7 +111,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/akoala.jpg" alt="SVN错误：XXX is scheduled for addition, but is missing" height="28">
+                <img src="/images/akoala.jpg" alt="雨纷纷—旧故里草木深2" height="28">
             
             </a>
         </div>
@@ -136,10 +134,6 @@ var _hmt = _hmt || [];
             <div class="navbar-end">
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -154,12 +148,23 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="columns">
                 <div class="column is-10-tablet is-10-desktop is-10-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">spring cloud</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-19T09:57:14.000Z">2019-08-19</time>
+                <time class="level-item has-text-grey" datetime="2020-06-09T03:35:13.000Z">2020-06-09</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/code/">code</a>
@@ -169,65 +174,38 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 285 个字)
+                    4 分钟 读完 (大约 527 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/" class="leancloud-visitors view" data-flag-title="SVN错误：XXX is scheduled for addition, but is missing">
+                <!-- <span id="/2020/06/09/Spring Cloud Gateway 的使用/" class="leancloud-visitors view" data-flag-title="Spring Cloud Gateway 的使用">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                SVN错误：XXX is scheduled for addition, but is missing
+                <a class="has-link-black-ter" href="/2020/06/09/Spring Cloud Gateway 的使用/">Spring Cloud Gateway 的使用</a>
             
         </h1>
         <div class="content">
-            <p><img src="https://i.loli.net/2020/01/08/khoDBwpMKAb4nJO.jpg" alt></p>
-<a id="more"></a>
-<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。</p>
-<p>xxx 必须是全路径</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert xxx --depth infinity</span><br></pre></td></tr></table></figure>
-
-<p>如</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert H:\abc\config\feign --depth infinity</span><br></pre></td></tr></table></figure>
-
-<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>发生在 <code>copy to branch or tag</code>时</p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>使用svn标记了将要提交的文件，此时被你删除了，再进行提交的时候，就会找不到。</p>
-<h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1><p><code>svn revert</code> 顾名思义是对修改过的东西进行回滚。如对已修改未提交的文件回滚；</p>
-<p><code>深度（depth）</code></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--depth empty：只包含目录自身，不包含目录下的任何文件和子目录。</span><br><span class="line">--depth files：   包含目录和目录下的文件，不包含子目录。</span><br><span class="line">--depth immediates：  包含目录和目录下的文件及子目录。但不对子目录递归。</span><br><span class="line">--depth infinity：  这是默认的，包含整个目录树。</span><br></pre></td></tr></table></figure>
-
-<p><code>svn status</code> 查看文件状态。</p>
-<p>本文参考<br><a href="https://blog.csdn.net/javaNiuLei12/article/details/89497000" target="_blank" rel="noopener">SVN错误：but is missing</a> </p>
-
+            <h2 id="框架说明"><a href="#框架说明" class="headerlink" title="框架说明"></a>框架说明</h2><p>用于统一服务的出入口。</p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/svn/">svn</a>
+                <a class="button is-size-7 is-light" href="/2020/06/09/Spring Cloud Gateway 的使用/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
@@ -235,52 +213,10 @@ var _hmt = _hmt || [];
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/20/mysql导入大文件失败解决方法/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">mysql导入大文件失败解决方法</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/16/git-push-本地项目到远程仓库/">
-                <span class="level-item">git push 本地项目到远程仓库</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<script>
-    var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/';
-        this.page.identifier = '2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/';
-    };
-    (function() {
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'https-yffjglcms-com' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
 
-<div id="disqus_thread">
-    
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </div>
-</div>
 </div>
                 
                 
@@ -356,33 +292,6 @@ var _hmt = _hmt || [];
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#解决方式">
-        <span class="has-mr-6">1</span>
-        <span>解决方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#场景">
-        <span class="has-mr-6">2</span>
-        <span>场景</span>
-        </a></li><li>
-        <a class="is-flex" href="#原因">
-        <span class="has-mr-6">3</span>
-        <span>原因</span>
-        </a></li><li>
-        <a class="is-flex" href="#拓展">
-        <span class="has-mr-6">4</span>
-        <span>拓展</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 <div class="card widget">
@@ -525,7 +434,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="/images/akoala.jpg" alt="SVN错误：XXX is scheduled for addition, but is missing" height="28">
+                    <img src="/images/akoala.jpg" alt="雨纷纷—旧故里草木深2" height="28">
                     
                 </a>
                 <p class="is-size-7">

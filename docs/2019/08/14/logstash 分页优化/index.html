@@ -3,21 +3,24 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>SVN错误：XXX is scheduled for addition, but is missing - 雨纷纷—旧故里草木深2</title>
+<title>logstash input-jdbc 分页性能优化问题 - 雨纷纷—旧故里草木深2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="svn">
+    <meta name="description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
+<meta name="keywords" content="elk,logstash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVN错误：XXX is scheduled for addition, but is missing">
-<meta property="og:url" content="https://yffjglcms.com/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/index.html">
+<meta property="og:title" content="logstash input-jdbc 分页性能优化问题">
+<meta property="og:url" content="https://yffjglcms.com/2019/08/14/logstash 分页优化/index.html">
 <meta property="og:site_name" content="雨纷纷—旧故里草木深2">
+<meta property="og:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-08T06:27:48.036Z">
+<meta property="og:updated_time" content="2020-10-21T03:40:50.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SVN错误：XXX is scheduled for addition, but is missing">
+<meta name="twitter:title" content="logstash input-jdbc 分页性能优化问题">
+<meta name="twitter:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -113,7 +116,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/akoala.jpg" alt="SVN错误：XXX is scheduled for addition, but is missing" height="28">
+                <img src="/images/akoala.jpg" alt="logstash input-jdbc 分页性能优化问题" height="28">
             
             </a>
         </div>
@@ -159,21 +162,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-19T09:57:14.000Z">2019-08-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/code/">code</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-08-14T09:23:29.000Z">2019-08-14</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 285 个字)
+                    2 分钟 读完 (大约 272 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/" class="leancloud-visitors view" data-flag-title="SVN错误：XXX is scheduled for addition, but is missing">
+                <!-- <span id="/2019/08/14/logstash 分页优化/" class="leancloud-visitors view" data-flag-title="logstash input-jdbc 分页性能优化问题">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
@@ -189,35 +188,42 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                SVN错误：XXX is scheduled for addition, but is missing
+                logstash input-jdbc 分页性能优化问题
             
         </h1>
         <div class="content">
-            <p><img src="https://i.loli.net/2020/01/08/khoDBwpMKAb4nJO.jpg" alt></p>
+            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
-<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>告诉SVN把这个文件退回到之前的状态 “unversioned”，也就是不对这个文件做任何修改，执行完提交即可。</p>
-<p>xxx 必须是全路径</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert xxx --depth infinity</span><br></pre></td></tr></table></figure>
 
-<p>如</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn revert H:\abc\config\feign --depth infinity</span><br></pre></td></tr></table></figure>
+<h1 id="解决办法：修改源码"><a href="#解决办法：修改源码" class="headerlink" title="解决办法：修改源码"></a>解决办法：修改源码</h1><ul>
+<li>文件位置   </li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logstash-7.2.0\vendor\bundle\jruby\2.5.0\gems\logstash-input-jdbc-4.3.13\lib\logstash\plugin_mixins\jdbc\jdbc.rb</span><br></pre></td></tr></table></figure>
 
-<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>发生在 <code>copy to branch or tag</code>时</p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>使用svn标记了将要提交的文件，此时被你删除了，再进行提交的时候，就会找不到。</p>
-<h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1><p><code>svn revert</code> 顾名思义是对修改过的东西进行回滚。如对已修改未提交的文件回滚；</p>
-<p><code>深度（depth）</code></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--depth empty：只包含目录自身，不包含目录下的任何文件和子目录。</span><br><span class="line">--depth files：   包含目录和目录下的文件，不包含子目录。</span><br><span class="line">--depth immediates：  包含目录和目录下的文件及子目录。但不对子目录递归。</span><br><span class="line">--depth infinity：  这是默认的，包含整个目录树。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加参数</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:100 =&gt; config</span><br><span class="line"># 开启子查询分页 @boole 2018-03-30</span><br><span class="line">config :subquery_paging_enabled, :validate =&gt; :boolean, :default =&gt; false</span><br><span class="line"># 总数sql，结果集列名为sum。for example `select count(*) as sum from goods` @boole 2018-03-30</span><br><span class="line">config :sum_statement, :validate =&gt; :string</span><br></pre></td></tr></table></figure>
 
-<p><code>svn status</code> 查看文件状态。</p>
-<p>本文参考<br><a href="https://blog.csdn.net/javaNiuLei12/article/details/89497000" target="_blank" rel="noopener">SVN错误：but is missing</a> </p>
+<ul>
+<li>修改方法</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:254 =&gt; perform_query</span><br><span class="line">private</span><br><span class="line">    def perform_query(query)</span><br><span class="line">		#subquery paging @boole 2018-03-30</span><br><span class="line">		if @subquery_paging_enabled</span><br><span class="line">		  @logger.info(&quot;################### subquery paging optimization ################&quot;)</span><br><span class="line">		  data_sum = @database[@sum_statement].get(:sum)</span><br><span class="line">		  @logger.info(&quot;data_sum=#&#123;data_sum&#125;&quot;)</span><br><span class="line">		  data_offset = 0</span><br><span class="line">			while data_offset &lt; data_sum do</span><br><span class="line">				@logger.info(&quot;data_offset=#&#123;data_offset&#125;&quot;)</span><br><span class="line">				sub_page_query = @database[@statement, symbolized_params(&#123;&quot;data_offset&quot; =&gt; data_offset, &quot;jdbc_page_size&quot; =&gt; @jdbc_page_size&#125;)]</span><br><span class="line">				sub_page_query.each do |row|</span><br><span class="line">				yield row</span><br><span class="line">			end</span><br><span class="line">			data_offset += @jdbc_page_size</span><br><span class="line">		end</span><br><span class="line">		elsif @jdbc_paging_enabled</span><br><span class="line">        query.each_page(@jdbc_page_size) do |paged_dataset|</span><br><span class="line">          paged_dataset.each do |row|</span><br><span class="line">            yield row</span><br><span class="line">          end</span><br><span class="line">        end</span><br><span class="line">      else</span><br><span class="line">        query.each do |row|</span><br><span class="line">          yield row</span><br><span class="line">        end</span><br><span class="line">      end</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>配置logstash.conf    </li>
+</ul>
+<p>sql中使用<code>:data_offset</code>和<code>:jdbc_page_size</code>进行分页</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">statement =&gt; &quot;SELECT * FROM ip_bundle_data_20190813 limit :data_offset,:jdbc_page_size&quot;</span><br><span class="line"></span><br><span class="line">subquery_paging_enabled =&gt; &quot;true&quot;</span><br><span class="line"></span><br><span class="line">sum_statement =&gt; &quot;select count(*) as `count` from ip_bundle_data_20190813&quot;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/svn/">svn</a>
+                    <a class="has-link-grey -link" href="/tags/elk/">elk</a>, <a class="has-link-grey -link" href="/tags/logstash/">logstash</a>
                 </div>
             </div>
         </div>
@@ -239,16 +245,16 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/20/mysql导入大文件失败解决方法/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/14/Welcome/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">mysql导入大文件失败解决方法</span>
+                <span class="level-item">Welcome</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/16/git-push-本地项目到远程仓库/">
-                <span class="level-item">git push 本地项目到远程仓库</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/14/logstash-分页优化/">
+                <span class="level-item">logstash input-jdbc 分页性能优化问题</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -264,8 +270,8 @@ var _hmt = _hmt || [];
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/';
-        this.page.identifier = '2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/';
+        this.page.url = 'https://yffjglcms.com/2019/08/14/logstash 分页优化/';
+        this.page.identifier = '2019/08/14/logstash 分页优化/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -363,21 +369,13 @@ var _hmt = _hmt || [];
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#解决方式">
-        <span class="has-mr-6">1</span>
-        <span>解决方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#场景">
-        <span class="has-mr-6">2</span>
-        <span>场景</span>
-        </a></li><li>
         <a class="is-flex" href="#原因">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">1</span>
         <span>原因</span>
         </a></li><li>
-        <a class="is-flex" href="#拓展">
-        <span class="has-mr-6">4</span>
-        <span>拓展</span>
+        <a class="is-flex" href="#解决办法：修改源码">
+        <span class="has-mr-6">2</span>
+        <span>解决办法：修改源码</span>
         </a></li></ul>
         </div>
     </div>
@@ -525,7 +523,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="/images/akoala.jpg" alt="SVN错误：XXX is scheduled for addition, but is missing" height="28">
+                    <img src="/images/akoala.jpg" alt="logstash input-jdbc 分页性能优化问题" height="28">
                     
                 </a>
                 <p class="is-size-7">
