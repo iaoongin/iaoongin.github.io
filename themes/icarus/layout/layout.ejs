@@ -4,13 +4,12 @@
 <head>
     <%- partial('common/head') %>
 
-    <!-- 新增 jsdeliv cdn 支持 start -->
-    {% assign assets_base_url = site.url %}
-    {% if site.cdn.jsdelivr.enabled %}
-    {% assign assets_base_url = "https://cdn.jsdelivr.net/gh/" | append: site.repository %}
-    {% endif %}
-    <!-- 新增 jsdeliv cdn 支持 end -->
-
+        <!-- 新增 jsdeliv cdn 支持 start -->
+        <!-- {% assign assets_base_url = site.url %}
+        {% if site.cdn.jsdelivr.enabled %}
+        {% assign assets_base_url = "https://cdn.jsdelivr.net/gh/" | append: site.repository %}
+        {% endif %} -->
+        <!-- 新增 jsdeliv cdn 支持 end -->
 
     <meta name="google-site-verification" content="8ObTjhVsmvFtANcK1gJBFiZWapC-h4akhkO1nPKS_lE" />
 </head>

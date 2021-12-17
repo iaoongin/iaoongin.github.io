@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>PowerMock使用 - 雨纷纷—旧故里草木深</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="简介​    可用于本地单元测试的框架。可模拟公有，私有方法返回数据；也可模拟静态属性数据，实例属性数据；模拟Spring Bean 实例及注入等。">
+<meta name="keywords" content="mock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerMock使用">
+<meta property="og:url" content="https://yffjglcms.com/2020/10/20/old/PowerMock使用/index.html">
+<meta property="og:site_name" content="雨纷纷—旧故里草木深">
+<meta property="og:description" content="简介​    可用于本地单元测试的框架。可模拟公有，私有方法返回数据；也可模拟静态属性数据，实例属性数据；模拟Spring Bean 实例及注入等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
+<meta property="og:updated_time" content="2021-12-17T02:34:11.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PowerMock使用">
+<meta name="twitter:description" content="简介​    可用于本地单元测试的框架。可模拟公有，私有方法返回数据；也可模拟静态属性数据，实例属性数据；模拟Spring Bean 实例及注入等。">
+<meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/akoala.jpg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="/loli.css">
+<link rel="stylesheet" href="/loli.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WVHW2QTX"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L4WVHW2QTX');
+</script>
+
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?80c986fb5a9da2d8df927d6c020b23b5";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+        <!-- 新增 jsdeliv cdn 支持 start -->
+        <!-- {% assign assets_base_url = site.url %}
+        {% if site.cdn.jsdelivr.enabled %}
+        {% assign assets_base_url = "https://cdn.jsdelivr.net/gh/" | append: site.repository %}
+        {% endif %} -->
+        <!-- 新增 jsdeliv cdn 支持 end -->
+
+    <meta name="google-site-verification" content="8ObTjhVsmvFtANcK1gJBFiZWapC-h4akhkO1nPKS_lE">
+</head>
+
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/akoala.jpg" alt="PowerMock使用" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10-tablet is-10-desktop is-10-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-10-20T03:35:13.000Z">2020-10-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/code/">code</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1102 个字)
+                </span>
+                
+
+                <!-- <span id="/2020/10/20/old/PowerMock使用/" class="leancloud-visitors view" data-flag-title="PowerMock使用">
+                    <em class="post-meta-item-text">阅读量 </em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span> -->
+
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                PowerMock使用
+            
+        </h1>
+        <div class="content">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​    可用于本地单元测试的框架。可模拟公有，私有方法返回数据；也可模拟静态属性数据，实例属性数据；模拟Spring Bean 实例及注入等。</p>
+<a id="more"></a>
+
+<h2 id="与Mockito的区别"><a href="#与Mockito的区别" class="headerlink" title="与Mockito的区别"></a>与Mockito的区别</h2><p>PowerMock较Mockito强大一点，可以模拟私有方法，静态方法，final 类。</p>
+<h2 id="maven依赖"><a href="#maven依赖" class="headerlink" title="maven依赖"></a>maven依赖</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.powermock&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;powermock-module-junit4&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.powermock&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;powermock-api-mockito2&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="Mock-和-Spy-区别"><a href="#Mock-和-Spy-区别" class="headerlink" title="@Mock 和 @Spy 区别"></a>@Mock 和 @Spy 区别</h3><p>@Mock：模拟出来的对象，其所有方法是空的，调用都返回空，真实的方法不会执行。</p>
+<p>@Spy：模拟出来的对象，其所有方法都是真实的，调用都按真实方法去调用，因此很可能依赖真实的环境。除非mock 对应的方法，才会覆盖。</p>
+<h3 id="doReturn-…when-和when-…thenReturn-的区别"><a href="#doReturn-…when-和when-…thenReturn-的区别" class="headerlink" title="doReturn()…when() 和when()…thenReturn() 的区别"></a>doReturn()…when() 和when()…thenReturn() 的区别</h3><p>mock 出来的对象： 没有区别。</p>
+<p>spy出来的对象：doReturn()…when() 和when()…thenReturn()  是有区别的</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="模拟公有方法"><a href="#模拟公有方法" class="headerlink" title="模拟公有方法"></a>模拟公有方法</h3><ol>
+<li>设置Runner环境为<code>PowerMockRunner</code></li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// FoodMenuServiceTest.class ...</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">FoodMenuServiceTest</span></span>&#123;</span><br><span class="line">	<span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义Mock属性和需要注入的属性。</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// FoodMenuServiceTest.class ...</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 需要注入（Mock的属性）的属性,此处需要new具体类</span></span><br><span class="line">	<span class="hljs-meta">@InjectMocks</span></span><br><span class="line">   <span class="hljs-keyword">private</span> FoodMenuService foodMenuService = <span class="hljs-keyword">new</span> FoodMenuServiceImpl();</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Mock 的属性</span></span><br><span class="line">   <span class="hljs-meta">@Mock</span></span><br><span class="line">   <span class="hljs-keyword">private</span> MaterialService materialService;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>构造数据，模拟方法，运行</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  	<span class="hljs-comment">// FoodMenuServiceTest.class ...</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockPublicMethod</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 数据</span></span><br><span class="line">       Material fish = Material.builder().name(<span class="hljs-string">"鱼"</span>).build();</span><br><span class="line">       Material crayFish = Material.builder().name(<span class="hljs-string">"小龙虾"</span>).build();</span><br><span class="line">       ArrayList&lt;Material&gt; materials = CollUtil.newArrayList(fish, crayFish);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 模拟方法 list</span></span><br><span class="line">       PowerMockito.when(materialService.list()).thenReturn(materials);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 调用</span></span><br><span class="line">       List&lt;Food&gt; list = foodMenuService.list();</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 打印结果</span></span><br><span class="line">       <span class="hljs-comment">// [Food(name=红烧鱼), Food(name=水煮鱼), Food(name=麻辣小龙虾), Food(name=清蒸小龙虾)]</span></span><br><span class="line">	System.out.println(list);	</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="模拟私有方法"><a href="#模拟私有方法" class="headerlink" title="模拟私有方法"></a>模拟私有方法</h3><ol>
+<li>设置runner环境为PowerMockRunner,并设置PrepareForTest为需要测试的类PrepareForTest</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// MockPrivateMethodTest.class</span></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class">@<span class="hljs-title">PrepareForTest</span>(<span class="hljs-title">MaterialServiceImpl</span>.<span class="hljs-title">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">MockPrivateMethodTest</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义需要Spy的属性</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// MockPrivateMethodTest.class</span></span><br><span class="line">	<span class="hljs-meta">@Spy</span></span><br><span class="line">    <span class="hljs-keyword">private</span> MaterialService materialService = <span class="hljs-keyword">new</span> MaterialServiceImpl();</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>构造数据，模拟方法，运行</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// MockPrivateMethodTest.class</span></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockPrivateMethod</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 数据</span></span><br><span class="line">       Material fish = Material.builder().name(<span class="hljs-string">"鱼"</span>).build();</span><br><span class="line">       Material crayFish = Material.builder().name(<span class="hljs-string">"小龙虾"</span>).build();</span><br><span class="line">       ArrayList&lt;Material&gt; materials = CollUtil.newArrayList(fish, crayFish);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 模拟方法</span></span><br><span class="line">       <span class="hljs-comment">// 区别于 PowerMockito.when(materialService, "pri").thenReturn(materials);</span></span><br><span class="line">       PowerMockito.doReturn(materials).when(materialService, <span class="hljs-string">"pri"</span>);</span><br><span class="line">       </span><br><span class="line">       <span class="hljs-comment">// 执行</span></span><br><span class="line">       List&lt;Material&gt; list = materialService.listForPri();</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 打印</span></span><br><span class="line">       <span class="hljs-comment">// [Material(name=鱼), Material(name=小龙虾)]</span></span><br><span class="line">       System.out.println(list);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="同时模拟共有和私有方法，并注入"><a href="#同时模拟共有和私有方法，并注入" class="headerlink" title="同时模拟共有和私有方法，并注入"></a>同时模拟共有和私有方法，并注入</h3><ol>
+<li>设置Runner和PrepareForTest</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// MockPublicAndPrivateMethodTest.class</span></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class">@<span class="hljs-title">PrepareForTest</span>(<span class="hljs-title">MaterialServiceImpl</span>.<span class="hljs-title">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">MockPublicAndPrivateMethodTest</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义属性</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">@InjectMocks</span></span><br><span class="line">   <span class="hljs-keyword">private</span> FoodMenuService foodMenuService = <span class="hljs-keyword">new</span> FoodMenuServiceImpl();</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 因为要调用 MaterialService.listForPubAndPri的实际方法，顾使用 @Spy，如不需可使用@Mock</span></span><br><span class="line">   <span class="hljs-meta">@Spy</span></span><br><span class="line">   <span class="hljs-keyword">private</span> MaterialService materialService = <span class="hljs-keyword">new</span> MaterialServiceImpl();</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>构造数据，模拟方法，运行</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockPublicAndPrivateMethod</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 构造数据</span></span><br><span class="line">       Material fish = Material.builder().name(<span class="hljs-string">"鱼"</span>).build();</span><br><span class="line">       Material crayFish = Material.builder().name(<span class="hljs-string">"小龙虾"</span>).build();</span><br><span class="line">       ArrayList&lt;Material&gt; materialsA = CollUtil.newArrayList(fish);</span><br><span class="line">       ArrayList&lt;Material&gt; materialsB = CollUtil.newArrayList(crayFish);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 模拟公有方法</span></span><br><span class="line">       <span class="hljs-comment">// 此处用方法名的形式是因为 spy出来的对象具有真实方法，以方法名的方式调用不会执行真实方法。</span></span><br><span class="line">       PowerMockito.doReturn(materialsA).when(materialService, <span class="hljs-string">"list"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 模拟私有方法</span></span><br><span class="line">       PowerMockito.doReturn(materialsB).when(materialService, <span class="hljs-string">"pri"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 运行</span></span><br><span class="line">       List&lt;Food&gt; list = foodMenuService.listForPubAndPri();</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">// 打印</span></span><br><span class="line">       <span class="hljs-comment">// [Food(name=红烧鱼), Food(name=水煮鱼), Food(name=麻辣小龙虾), Food(name=清蒸小龙虾)]</span></span><br><span class="line">       System.out.println(list);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模拟静态方法"><a href="#模拟静态方法" class="headerlink" title="模拟静态方法"></a>模拟静态方法</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.api.mockito.PowerMockito;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.core.classloader.annotations.PrepareForTest;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.modules.junit4.PowerMockRunner;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class">@<span class="hljs-title">PrepareForTest</span>(<span class="hljs-title">StaticMethodAndField</span>.<span class="hljs-title">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">StaticMethodAndFieldTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 期望数据</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String expect = <span class="hljs-string">"127.0.0.1"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockStaticMethod</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 模拟方法</span></span><br><span class="line">        PowerMockito.mockStatic(StaticMethodAndField<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;</span><br><span class="line">        PowerMockito.when(StaticMethodAndField.getIp()).thenReturn(expect);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 调用</span></span><br><span class="line">        String ip = StaticMethodAndField.getIp();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 断言</span></span><br><span class="line">        Assert.assertEquals(expect, ip);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模拟静态私有属性"><a href="#模拟静态私有属性" class="headerlink" title="模拟静态私有属性"></a>模拟静态私有属性</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class">@<span class="hljs-title">PrepareForTest</span>(<span class="hljs-title">StaticMethodAndField</span>.<span class="hljs-title">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">StaticMethodAndFieldTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 期望数据</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String expect = <span class="hljs-string">"127.0.0.1"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * 参考 https://qa.1r1g.com/sf/ask/1621376431/</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> NoSuchFieldException</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IllegalAccessException</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockFinalField</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> NoSuchFieldException, IllegalAccessException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 模拟属性</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment">// 获取字段</span></span><br><span class="line">        Field field = Whitebox.getField(StaticMethodAndField.class, "IP");</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 设置成public</span></span><br><span class="line">        field.setAccessible(<span class="hljs-keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 获取 修饰器</span></span><br><span class="line">        Field modifiersField = Field.class.getDeclaredField("modifiers");</span><br><span class="line">        <span class="hljs-comment">// 设置为可使用的</span></span><br><span class="line">        modifiersField.setAccessible(<span class="hljs-keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 消除 FINAL 修饰器</span></span><br><span class="line">        modifiersField.setInt(field, field.getModifiers() &amp; ~Modifier.FINAL);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 设置新值</span></span><br><span class="line">        field.set(<span class="hljs-keyword">null</span>, expect);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 断言</span></span><br><span class="line">        Assert.assertEquals(expect, StaticMethodAndField.IP);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模拟枚举类"><a href="#模拟枚举类" class="headerlink" title="模拟枚举类"></a>模拟枚举类</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.api.mockito.PowerMockito;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.core.classloader.annotations.PrepareForTest;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.modules.junit4.PowerMockRunner;</span><br><span class="line"><span class="hljs-keyword">import</span> org.powermock.reflect.Whitebox;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@RunWith</span>(PowerMockRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span></span><br><span class="line"><span class="hljs-class">@<span class="hljs-title">PrepareForTest</span>(<span class="hljs-title">Colors</span>.<span class="hljs-title">class</span>)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">ColorsTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mockEnums</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// 期望的数据</span></span><br><span class="line">        String expect = <span class="hljs-string">"模拟的蓝色"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 模拟的实例</span></span><br><span class="line">        Colors instance = PowerMockito.mock(Colors<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 替换实例</span></span><br><span class="line">        Whitebox.setInternalState(Colors.class, "BLUE", instance);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 模拟方法</span></span><br><span class="line">        PowerMockito.when(instance.getName() ).thenReturn(expect);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 断言</span></span><br><span class="line">        assertEquals(expect, Colors.BLUE.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/iaoongin/summary-project/sp-powermock</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/mock/">mock</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2021/12/17/2021/各种开发工具国内加速配置/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">各种开发工具国内加速配置</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/09/old/Spring Cloud Gateway 的使用/">
+                <span class="level-item">Spring Cloud Gateway 的使用</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://yffjglcms.com/2020/10/20/old/PowerMock使用/';
+        this.page.identifier = '2020/10/20/old/PowerMock使用/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'https-yffjglcms-com' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="yffjglcms">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        yffjglcms
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shen Zhen</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        1
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/iaoongin" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#简介">
+        <span class="has-mr-6">1</span>
+        <span>简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#与Mockito的区别">
+        <span class="has-mr-6">2</span>
+        <span>与Mockito的区别</span>
+        </a></li><li>
+        <a class="is-flex" href="#maven依赖">
+        <span class="has-mr-6">3</span>
+        <span>maven依赖</span>
+        </a></li><li>
+        <a class="is-flex" href="#说明">
+        <span class="has-mr-6">4</span>
+        <span>说明</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Mock-和-Spy-区别">
+        <span class="has-mr-6">4.1</span>
+        <span>@Mock 和 @Spy 区别</span>
+        </a></li><li>
+        <a class="is-flex" href="#doReturn-…when-和when-…thenReturn-的区别">
+        <span class="has-mr-6">4.2</span>
+        <span>doReturn()…when() 和when()…thenReturn() 的区别</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#使用">
+        <span class="has-mr-6">5</span>
+        <span>使用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#模拟公有方法">
+        <span class="has-mr-6">5.1</span>
+        <span>模拟公有方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#模拟私有方法">
+        <span class="has-mr-6">5.2</span>
+        <span>模拟私有方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#同时模拟共有和私有方法，并注入">
+        <span class="has-mr-6">5.3</span>
+        <span>同时模拟共有和私有方法，并注入</span>
+        </a></li><li>
+        <a class="is-flex" href="#模拟静态方法">
+        <span class="has-mr-6">5.4</span>
+        <span>模拟静态方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#模拟静态私有属性">
+        <span class="has-mr-6">5.5</span>
+        <span>模拟静态私有属性</span>
+        </a></li><li>
+        <a class="is-flex" href="#模拟枚举类">
+        <span class="has-mr-6">5.6</span>
+        <span>模拟枚举类</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#项目源码">
+        <span class="has-mr-6">6</span>
+        <span>项目源码</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/code/">
+            <span class="level-start">
+                <span class="level-item">code</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://gitee.com/iaoongin" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Gitee</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">gitee.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/iaoongin" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="/images/akoala.jpg" alt="PowerMock使用" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2021 yffjglcms&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <span id="busuanzi_container_site_uv">
+                        共<span id="busuanzi_value_site_uv">0</span>个访客
+                    </span>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                <span id="busuanzi_container_site_pv" class="theme-info">
+                    本站总访问量<span id="busuanzi_value_site_pv"> </span>次
+                </span>
+                <span id="busuanzi_container_site_uv" class="theme-info">
+                    | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span> -->
+            </div>
+
+
+        </div>
+    </div>
+
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/snow.js"><\/script>');
+        }
+    </script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+</html>
