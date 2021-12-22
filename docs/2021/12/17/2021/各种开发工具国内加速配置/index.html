@@ -9,7 +9,7 @@
 
 
     <meta name="description" content="简介​各种开发工具配置国内加速">
-<meta name="keywords" content="git,maven,go,containerd,docker,yarn,npm">
+<meta name="keywords" content="git,maven,go,containerd,docker,yarn,npm,ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="各种开发工具国内加速配置">
 <meta property="og:url" content="https://yffjglcms.com/2021/12/17/2021/各种开发工具国内加速配置/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介​各种开发工具配置国内加速">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-12-17T06:33:04.646Z">
+<meta property="og:updated_time" content="2021-12-22T02:13:05.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种开发工具国内加速配置">
 <meta name="twitter:description" content="简介​各种开发工具配置国内加速">
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 436 个字)
+                    5 分钟 读完 (大约 743 个字)
                 </span>
                 
 
@@ -247,13 +247,32 @@ var _hmt = _hmt || [];
 
 <p>设置成淘宝镜像</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">npm install phantomjs --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs</span><br><span class="line">npm install chromedriver --chromedriver_cdnurl=http://npm.taobao.org/mirrors/chromedriver</span><br><span class="line">npm install operadriver --operadriver_cdnurl=http://npm.taobao.org/mirrors/operadriver</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br><span class="line">npm config set electron_mirror https://npm.taobao.org/mirrors/electron/</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/</span><br></pre></td></tr></table></figure>
+
+<h2 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h2><p>备份之前的sources.list文件 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -ra /etc/apt/sources.list /etc/apt/sources.list.bak</span><br></pre></td></tr></table></figure>
+
+<p>修改sources.list文件 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ubuntu 18.04 lts (bionic)</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ubuntu 20.04 lts (focal)</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"> </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"> </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"> </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line"> </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>更新apt缓存</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/containerd/">containerd</a>, <a class="has-link-grey -link" href="/tags/docker/">docker</a>, <a class="has-link-grey -link" href="/tags/git/">git</a>, <a class="has-link-grey -link" href="/tags/go/">go</a>, <a class="has-link-grey -link" href="/tags/maven/">maven</a>, <a class="has-link-grey -link" href="/tags/npm/">npm</a>, <a class="has-link-grey -link" href="/tags/yarn/">yarn</a>
+                    <a class="has-link-grey -link" href="/tags/containerd/">containerd</a>, <a class="has-link-grey -link" href="/tags/docker/">docker</a>, <a class="has-link-grey -link" href="/tags/git/">git</a>, <a class="has-link-grey -link" href="/tags/go/">go</a>, <a class="has-link-grey -link" href="/tags/maven/">maven</a>, <a class="has-link-grey -link" href="/tags/npm/">npm</a>, <a class="has-link-grey -link" href="/tags/ubuntu/">ubuntu</a>, <a class="has-link-grey -link" href="/tags/yarn/">yarn</a>
                 </div>
             </div>
         </div>
@@ -370,7 +389,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        20
+                        21
                     </p>
                 </div>
             </div>
@@ -423,6 +442,10 @@ var _hmt = _hmt || [];
         <a class="is-flex" href="#npm">
         <span class="has-mr-6">8</span>
         <span>npm</span>
+        </a></li><li>
+        <a class="is-flex" href="#ubuntu">
+        <span class="has-mr-6">9</span>
+        <span>ubuntu</span>
         </a></li></ul>
         </div>
     </div>
@@ -435,7 +458,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
     </div>
 </div>
 
