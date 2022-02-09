@@ -8,19 +8,16 @@
 
 
 
-    <meta name="description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
-<meta name="keywords" content="elk,logstash">
+    <meta name="keywords" content="elk,logstash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logstash input-jdbc 分页性能优化问题">
-<meta property="og:url" content="https://yffjglcms.com/2019/08/14/old/logstash 分页优化/index.html">
+<meta property="og:url" content="https://yffjglcms.com/2019/08/14/logstash-分页优化/index.html">
 <meta property="og:site_name" content="雨纷纷—旧故里草木深">
-<meta property="og:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-12-17T02:34:11.057Z">
+<meta property="og:updated_time" content="2019-08-16T02:10:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logstash input-jdbc 分页性能优化问题">
-<meta name="twitter:description" content="原因logstash 自带分页查询,竟然是查处所有数据再计数的。 1SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -33,8 +30,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="/loli.css">
-<link rel="stylesheet" href="/loli.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
 
@@ -67,15 +64,6 @@
 
     
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WVHW2QTX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L4WVHW2QTX');
-</script>
-
 
     
     
@@ -83,7 +71,7 @@
 var _hmt = _hmt || [];
 (function() {
     var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?80c986fb5a9da2d8df927d6c020b23b5";
+    hm.src = "//hm.baidu.com/hm.js?3418be4c8d8912fb87fbbc0b46c1a486";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
@@ -99,10 +87,6 @@ var _hmt = _hmt || [];
 
     
     
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
     
 
 
@@ -172,24 +156,23 @@ var _hmt = _hmt || [];
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-08-14T09:23:29.000Z">2019-08-14</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/code/">code</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 272 个字)
+                    2 分钟 读完 (大约 279 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/14/old/logstash 分页优化/" class="leancloud-visitors view" data-flag-title="logstash input-jdbc 分页性能优化问题">
+                <!-- <span id="/2019/08/14/logstash-分页优化/" class="leancloud-visitors view" data-flag-title="logstash input-jdbc 分页性能优化问题">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
                 
             </div>
         </div>
@@ -200,30 +183,19 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
-
+            <!-- ![](https://i.loli.net/2020/01/08/khoDBwpMKAb4nJO.jpg) -->
 <a id="more"></a>
 
-<h1 id="解决办法：修改源码"><a href="#解决办法：修改源码" class="headerlink" title="解决办法：修改源码"></a>解决办法：修改源码</h1><ul>
-<li>文件位置   </li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logstash-7.2.0\vendor\bundle\jruby\2.5.0\gems\logstash-input-jdbc-4.3.13\lib\logstash\plugin_mixins\jdbc\jdbc.rb</span><br></pre></td></tr></table></figure>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>添加参数</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:100 =&gt; config</span><br><span class="line"># 开启子查询分页 @boole 2018-03-30</span><br><span class="line">config :subquery_paging_enabled, :validate =&gt; :boolean, :default =&gt; false</span><br><span class="line"># 总数sql，结果集列名为sum。for example `select count(*) as sum from goods` @boole 2018-03-30</span><br><span class="line">config :sum_statement, :validate =&gt; :string</span><br></pre></td></tr></table></figure>
+<h1 id="解决办法：修改源码"><a href="#解决办法：修改源码" class="headerlink" title="解决办法：修改源码"></a>解决办法：修改源码</h1><h2 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a>文件位置</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logstash-7.2.0\vendor\bundle\jruby\2.5.0\gems\logstash-input-jdbc-4.3.13\lib\logstash\plugin_mixins\jdbc\jdbc.rb</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>修改方法</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:254 =&gt; perform_query</span><br><span class="line">private</span><br><span class="line">    def perform_query(query)</span><br><span class="line">		#subquery paging @boole 2018-03-30</span><br><span class="line">		if @subquery_paging_enabled</span><br><span class="line">		  @logger.info(&quot;################### subquery paging optimization ################&quot;)</span><br><span class="line">		  data_sum = @database[@sum_statement].get(:sum)</span><br><span class="line">		  @logger.info(&quot;data_sum=#&#123;data_sum&#125;&quot;)</span><br><span class="line">		  data_offset = 0</span><br><span class="line">			while data_offset &lt; data_sum do</span><br><span class="line">				@logger.info(&quot;data_offset=#&#123;data_offset&#125;&quot;)</span><br><span class="line">				sub_page_query = @database[@statement, symbolized_params(&#123;&quot;data_offset&quot; =&gt; data_offset, &quot;jdbc_page_size&quot; =&gt; @jdbc_page_size&#125;)]</span><br><span class="line">				sub_page_query.each do |row|</span><br><span class="line">				yield row</span><br><span class="line">			end</span><br><span class="line">			data_offset += @jdbc_page_size</span><br><span class="line">		end</span><br><span class="line">		elsif @jdbc_paging_enabled</span><br><span class="line">        query.each_page(@jdbc_page_size) do |paged_dataset|</span><br><span class="line">          paged_dataset.each do |row|</span><br><span class="line">            yield row</span><br><span class="line">          end</span><br><span class="line">        end</span><br><span class="line">      else</span><br><span class="line">        query.each do |row|</span><br><span class="line">          yield row</span><br><span class="line">        end</span><br><span class="line">      end</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<h2 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:100 =&gt; config</span><br><span class="line"># 开启子查询分页 @boole 2018-03-30</span><br><span class="line">config :subquery_paging_enabled, :validate =&gt; :boolean, :default =&gt; false</span><br><span class="line"># 总数sql，结果集列名为sum。for example `select count(*) as sum from goods` @boole 2018-03-30</span><br><span class="line">config :sum_statement, :validate =&gt; :string</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>配置logstash.conf    </li>
-</ul>
-<p>sql中使用<code>:data_offset</code>和<code>:jdbc_page_size</code>进行分页</p>
+<h2 id="修改方法"><a href="#修改方法" class="headerlink" title="修改方法"></a>修改方法</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// line:254 =&gt; perform_query</span><br><span class="line">private</span><br><span class="line">    def perform_query(query)</span><br><span class="line">		#subquery paging @boole 2018-03-30</span><br><span class="line">		if @subquery_paging_enabled</span><br><span class="line">		  @logger.info(&quot;################### subquery paging optimization ################&quot;)</span><br><span class="line">		  data_sum = @database[@sum_statement].get(:sum)</span><br><span class="line">		  @logger.info(&quot;data_sum=#&#123;data_sum&#125;&quot;)</span><br><span class="line">		  data_offset = 0</span><br><span class="line">			while data_offset &lt; data_sum do</span><br><span class="line">				@logger.info(&quot;data_offset=#&#123;data_offset&#125;&quot;)</span><br><span class="line">				sub_page_query = @database[@statement, symbolized_params(&#123;&quot;data_offset&quot; =&gt; data_offset, &quot;jdbc_page_size&quot; =&gt; @jdbc_page_size&#125;)]</span><br><span class="line">				sub_page_query.each do |row|</span><br><span class="line">				yield row</span><br><span class="line">			end</span><br><span class="line">			data_offset += @jdbc_page_size</span><br><span class="line">		end</span><br><span class="line">		elsif @jdbc_paging_enabled</span><br><span class="line">        query.each_page(@jdbc_page_size) do |paged_dataset|</span><br><span class="line">          paged_dataset.each do |row|</span><br><span class="line">            yield row</span><br><span class="line">          end</span><br><span class="line">        end</span><br><span class="line">      else</span><br><span class="line">        query.each do |row|</span><br><span class="line">          yield row</span><br><span class="line">        end</span><br><span class="line">      end</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置logstash-conf"><a href="#配置logstash-conf" class="headerlink" title="配置logstash.conf"></a>配置logstash.conf</h2><p>sql中使用<code>:data_offset</code>和<code>:jdbc_page_size</code>进行分页</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">statement =&gt; &quot;SELECT * FROM ip_bundle_data_20190813 limit :data_offset,:jdbc_page_size&quot;</span><br><span class="line"></span><br><span class="line">subquery_paging_enabled =&gt; &quot;true&quot;</span><br><span class="line"></span><br><span class="line">sum_statement =&gt; &quot;select count(*) as `count` from ip_bundle_data_20190813&quot;</span><br></pre></td></tr></table></figure>
         </div>
         
@@ -253,7 +225,7 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/14/old/Welcome/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/14/Welcome/">
                 <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">Welcome</span>
             </a>
@@ -261,7 +233,7 @@ var _hmt = _hmt || [];
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/14/old/logstash-分页优化/">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/14/logstash 分页优化/">
                 <span class="level-item">logstash input-jdbc 分页性能优化问题</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
@@ -278,12 +250,12 @@ var _hmt = _hmt || [];
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2019/08/14/old/logstash 分页优化/';
-        this.page.identifier = '2019/08/14/old/logstash 分页优化/';
+        this.page.url = 'https://yffjglcms.com/2019/08/14/logstash-分页优化/';
+        this.page.identifier = '2019/08/14/logstash-分页优化/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'https-yffjglcms-com' + '.disqus.com/embed.js';
+        s.src = '//' + 'akoala' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -305,17 +277,54 @@ var _hmt = _hmt || [];
 <div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#原因">
+        <span class="has-mr-6">1</span>
+        <span>原因</span>
+        </a></li><li>
+        <a class="is-flex" href="#解决办法：修改源码">
+        <span class="has-mr-6">2</span>
+        <span>解决办法：修改源码</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#文件位置">
+        <span class="has-mr-6">2.1</span>
+        <span>文件位置</span>
+        </a></li><li>
+        <a class="is-flex" href="#添加参数">
+        <span class="has-mr-6">2.2</span>
+        <span>添加参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#修改方法">
+        <span class="has-mr-6">2.3</span>
+        <span>修改方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置logstash-conf">
+        <span class="has-mr-6">2.4</span>
+        <span>配置logstash.conf</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
             <div class="level-item has-text-centered" style="flex-shrink: 1">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="yffjglcms">
+                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="A Koala">
                     
                     
                     <p class="is-size-4 is-block">
-                        yffjglcms
+                        A Koala
                     </p>
                     
                     
@@ -370,22 +379,12 @@ var _hmt = _hmt || [];
 </div>
     
         
-<div class="card widget" id="toc">
+<div class="card widget">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#原因">
-        <span class="has-mr-6">1</span>
-        <span>原因</span>
-        </a></li><li>
-        <a class="is-flex" href="#解决办法：修改源码">
-        <span class="has-mr-6">2</span>
-        <span>解决办法：修改源码</span>
-        </a></li></ul>
-        </div>
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
     </div>
 </div>
 
@@ -394,9 +393,74 @@ var _hmt = _hmt || [];
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            标签云
+            最新文章
         </h3>
-        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-12-17T04:35:13.000Z">2021-12-17</time></div>
+                    <a href="/2021/12/17/各种开发工具国内加速配置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">各种开发工具国内加速配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-20T03:35:13.000Z">2020-10-20</time></div>
+                    <a href="/2020/10/20/PowerMock使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PowerMock使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T03:35:13.000Z">2020-06-09</time></div>
+                    <a href="/2020/06/09/Spring Cloud Gateway 的使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud Gateway 的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time></div>
+                    <a href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="title has-link-black-ter is-size-6 has-text-weight-normal">spring中将配置文件的属性注入到静态属性里</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time></div>
+                    <a href="/2019/08/26/windows-运行关闭jar包cmd脚本/" class="title has-link-black-ter is-size-6 has-text-weight-normal">windows-运行关闭jar包cmd脚本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -546,13 +610,8 @@ var _hmt = _hmt || [];
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2021 yffjglcms&nbsp;
+                    &copy; 2022 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                    
-                    <br>
-                    <span id="busuanzi_container_site_uv">
-                        共<span id="busuanzi_value_site_uv">0</span>个访客
-                    </span>
                     
                 </p>
             </div>
@@ -650,8 +709,6 @@ var IcarusThemeSettings = {
     
     
     
-    
-
     
 
 

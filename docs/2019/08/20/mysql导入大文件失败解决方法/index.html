@@ -3,21 +3,21 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>git push 本地项目到远程仓库 - 雨纷纷—旧故里草木深</title>
+<title>mysql导入大文件失败解决方法 - 雨纷纷—旧故里草木深</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="git">
+    <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git push 本地项目到远程仓库">
-<meta property="og:url" content="https://yffjglcms.com/2019/08/16/old/git-push-本地项目到远程仓库/index.html">
+<meta property="og:title" content="mysql导入大文件失败解决方法">
+<meta property="og:url" content="https://yffjglcms.com/2019/08/20/mysql导入大文件失败解决方法/index.html">
 <meta property="og:site_name" content="雨纷纷—旧故里草木深">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-12-17T02:34:49.369Z">
+<meta property="og:updated_time" content="2021-12-17T02:36:25.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git push 本地项目到远程仓库">
+<meta name="twitter:title" content="mysql导入大文件失败解决方法">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -30,8 +30,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="/loli.css">
-<link rel="stylesheet" href="/loli.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
 
@@ -64,15 +64,6 @@
 
     
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WVHW2QTX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L4WVHW2QTX');
-</script>
-
 
     
     
@@ -80,7 +71,7 @@
 var _hmt = _hmt || [];
 (function() {
     var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?80c986fb5a9da2d8df927d6c020b23b5";
+    hm.src = "//hm.baidu.com/hm.js?3418be4c8d8912fb87fbbc0b46c1a486";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
@@ -96,10 +87,6 @@ var _hmt = _hmt || [];
 
     
     
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
     
 
 
@@ -121,7 +108,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/akoala.jpg" alt="git push 本地项目到远程仓库" height="28">
+                <img src="/images/akoala.jpg" alt="mysql导入大文件失败解决方法" height="28">
             
             </a>
         </div>
@@ -167,7 +154,7 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-16T01:22:44.000Z">2019-08-16</time>
+                <time class="level-item has-text-grey" datetime="2019-08-20T06:15:19.000Z">2019-08-20</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/code/">code</a>
@@ -177,55 +164,32 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 252 个字)
+                    几秒 读完 (大约 93 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/16/old/git-push-本地项目到远程仓库/" class="leancloud-visitors view" data-flag-title="git push 本地项目到远程仓库">
+                <!-- <span id="/2019/08/20/mysql导入大文件失败解决方法/" class="leancloud-visitors view" data-flag-title="mysql导入大文件失败解决方法">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                git push 本地项目到远程仓库
+                mysql导入大文件失败解决方法
             
         </h1>
         <div class="content">
-            <!-- ![](https://i.loli.net/2019/11/26/IOCUvxrVcesMJab.jpg) -->
+            <!-- ![](https://i.loli.net/2020/01/08/RYBJqgFQIXW7hAH.png) -->
 <a id="more"></a>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>修改<code>/etc/my.conf</code>,在以指定区域新增以下行</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">#### 避免导入失败</span><br><span class="line">max_allowed_packet = 200M</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqlhotcopy]</span><br><span class="line"></span><br><span class="line">interactive-timeout=28800000</span><br><span class="line">wait_timeout=28800000</span><br><span class="line">#### 避免导入失败</span><br></pre></td></tr></table></figure>
 
-<h1 id="1-进入项目目录"><a href="#1-进入项目目录" class="headerlink" title="1.进入项目目录"></a>1.进入项目目录</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd H:\blog</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-初始化仓库"><a href="#2-初始化仓库" class="headerlink" title="2.初始化仓库"></a>2.初始化仓库</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-添加所有文件到仓库"><a href="#3-添加所有文件到仓库" class="headerlink" title="3.添加所有文件到仓库"></a>3.添加所有文件到仓库</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-提交"><a href="#4-提交" class="headerlink" title="4.提交"></a>4.提交</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;init&quot;</span><br></pre></td></tr></table></figure>
-
-<h1 id="5-建立好远程仓库"><a href="#5-建立好远程仓库" class="headerlink" title="5.建立好远程仓库"></a>5.建立好远程仓库</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/iaoongin/iaoongin.github.io.git</span><br></pre></td></tr></table></figure>
-
-<h1 id="6-配置远程仓库"><a href="#6-配置远程仓库" class="headerlink" title="6.配置远程仓库"></a>6.配置远程仓库</h1><h2 id="http方式"><a href="#http方式" class="headerlink" title="http方式"></a>http方式</h2><h3 id="此方式需要输入密码"><a href="#此方式需要输入密码" class="headerlink" title="此方式需要输入密码"></a>此方式需要输入密码</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/iaoongin/iaoongin.github.io.git</span><br><span class="line">// origin 是远程仓库的别名，用于代替git仓库地址</span><br></pre></td></tr></table></figure>
-
-<h2 id="ssh方式"><a href="#ssh方式" class="headerlink" title="ssh方式"></a>ssh方式</h2><h3 id="此方式需要生成秘钥"><a href="#此方式需要生成秘钥" class="headerlink" title="此方式需要生成秘钥"></a>此方式需要生成秘钥</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:iaoongin/iaoongin.github.io.git</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;这里换上你的邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="生成秘钥-如下图"><a href="#生成秘钥-如下图" class="headerlink" title="生成秘钥,如下图"></a>生成秘钥,如下图</h4><p><img src="/img/git/ssh-key.png" alt="生成秘钥"> </p>
-<h4 id="配置远程仓库key"><a href="#配置远程仓库key" class="headerlink" title="配置远程仓库key"></a>配置远程仓库key</h4><p><img src="/img/git/ssh-key-2.png" alt="配置远程仓库key"> </p>
-<h1 id="7-开始推送"><a href="#7-开始推送" class="headerlink" title="7.开始推送"></a>7.开始推送</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push origin master:source</span><br><span class="line">// git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="分支说明"><a href="#分支说明" class="headerlink" title="分支说明"></a>分支说明</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 本地默认初始为master分支</span><br><span class="line">// git branch -a 查看所有本地分支</span><br><span class="line">// git branch 查看当前分支</span><br><span class="line">// git branch abc 创建分支abc</span><br><span class="line">// git checkout abc 切换abc分支</span><br></pre></td></tr></table></figure>
-
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>导入的sql文件较大时，或者网络状况不好。</p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>mysql 默认配置超时时间及支持文件大小限制太小</p>
 
         </div>
         
@@ -233,7 +197,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/git/">git</a>
+                    <a class="has-link-grey -link" href="/tags/mysql/">mysql</a>
                 </div>
             </div>
         </div>
@@ -255,16 +219,16 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/19/old/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/20/IDEA打印彩色日志/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">SVN错误：XXX is scheduled for addition, but is missing</span>
+                <span class="level-item">IDEA打印彩色日志</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/14/old/Welcome/">
-                <span class="level-item">Welcome</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/19/SVN错误：XXX-is-scheduled-for-addition-but-is-missing/">
+                <span class="level-item">SVN错误：XXX is scheduled for addition, but is missing</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -280,12 +244,12 @@ var _hmt = _hmt || [];
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2019/08/16/old/git-push-本地项目到远程仓库/';
-        this.page.identifier = '2019/08/16/old/git-push-本地项目到远程仓库/';
+        this.page.url = 'https://yffjglcms.com/2019/08/20/mysql导入大文件失败解决方法/';
+        this.page.identifier = '2019/08/20/mysql导入大文件失败解决方法/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'https-yffjglcms-com' + '.disqus.com/embed.js';
+        s.src = '//' + 'akoala' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -307,17 +271,42 @@ var _hmt = _hmt || [];
 <div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#解决方式">
+        <span class="has-mr-6">1</span>
+        <span>解决方式</span>
+        </a></li><li>
+        <a class="is-flex" href="#场景">
+        <span class="has-mr-6">2</span>
+        <span>场景</span>
+        </a></li><li>
+        <a class="is-flex" href="#原因">
+        <span class="has-mr-6">3</span>
+        <span>原因</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
             <div class="level-item has-text-centered" style="flex-shrink: 1">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="yffjglcms">
+                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="A Koala">
                     
                     
                     <p class="is-size-4 is-block">
-                        yffjglcms
+                        A Koala
                     </p>
                     
                     
@@ -372,62 +361,12 @@ var _hmt = _hmt || [];
 </div>
     
         
-<div class="card widget" id="toc">
+<div class="card widget">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#1-进入项目目录">
-        <span class="has-mr-6">1</span>
-        <span>1.进入项目目录</span>
-        </a></li><li>
-        <a class="is-flex" href="#2-初始化仓库">
-        <span class="has-mr-6">2</span>
-        <span>2.初始化仓库</span>
-        </a></li><li>
-        <a class="is-flex" href="#3-添加所有文件到仓库">
-        <span class="has-mr-6">3</span>
-        <span>3.添加所有文件到仓库</span>
-        </a></li><li>
-        <a class="is-flex" href="#4-提交">
-        <span class="has-mr-6">4</span>
-        <span>4.提交</span>
-        </a></li><li>
-        <a class="is-flex" href="#5-建立好远程仓库">
-        <span class="has-mr-6">5</span>
-        <span>5.建立好远程仓库</span>
-        </a></li><li>
-        <a class="is-flex" href="#6-配置远程仓库">
-        <span class="has-mr-6">6</span>
-        <span>6.配置远程仓库</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#http方式">
-        <span class="has-mr-6">6.1</span>
-        <span>http方式</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#此方式需要输入密码">
-        <span class="has-mr-6">6.1.1</span>
-        <span>此方式需要输入密码</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#ssh方式">
-        <span class="has-mr-6">6.2</span>
-        <span>ssh方式</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#此方式需要生成秘钥">
-        <span class="has-mr-6">6.2.1</span>
-        <span>此方式需要生成秘钥</span>
-        </a></li></ul></li></ul></li><li>
-        <a class="is-flex" href="#7-开始推送">
-        <span class="has-mr-6">7</span>
-        <span>7.开始推送</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#分支说明">
-        <span class="has-mr-6">7.1</span>
-        <span>分支说明</span>
-        </a></li></ul></li></ul>
-        </div>
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
     </div>
 </div>
 
@@ -436,9 +375,74 @@ var _hmt = _hmt || [];
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            标签云
+            最新文章
         </h3>
-        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-12-17T04:35:13.000Z">2021-12-17</time></div>
+                    <a href="/2021/12/17/各种开发工具国内加速配置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">各种开发工具国内加速配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-20T03:35:13.000Z">2020-10-20</time></div>
+                    <a href="/2020/10/20/PowerMock使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PowerMock使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T03:35:13.000Z">2020-06-09</time></div>
+                    <a href="/2020/06/09/Spring Cloud Gateway 的使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud Gateway 的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time></div>
+                    <a href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="title has-link-black-ter is-size-6 has-text-weight-normal">spring中将配置文件的属性注入到静态属性里</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time></div>
+                    <a href="/2019/08/26/windows-运行关闭jar包cmd脚本/" class="title has-link-black-ter is-size-6 has-text-weight-normal">windows-运行关闭jar包cmd脚本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -584,17 +588,12 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="/images/akoala.jpg" alt="git push 本地项目到远程仓库" height="28">
+                    <img src="/images/akoala.jpg" alt="mysql导入大文件失败解决方法" height="28">
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2021 yffjglcms&nbsp;
+                    &copy; 2022 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                    
-                    <br>
-                    <span id="busuanzi_container_site_uv">
-                        共<span id="busuanzi_value_site_uv">0</span>个访客
-                    </span>
                     
                 </p>
             </div>
@@ -692,8 +691,6 @@ var IcarusThemeSettings = {
     
     
     
-    
-
     
 
 

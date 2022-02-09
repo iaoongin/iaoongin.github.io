@@ -3,21 +3,21 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>windows-运行关闭jar包cmd脚本 - 雨纷纷—旧故里草木深</title>
+<title>spring中将配置文件的属性注入到静态属性里 - 雨纷纷—旧故里草木深</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="jar,windows,cmd">
+    <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows-运行关闭jar包cmd脚本">
-<meta property="og:url" content="https://yffjglcms.com/2019/08/26/old/windows-运行关闭jar包cmd脚本/index.html">
+<meta property="og:title" content="spring中将配置文件的属性注入到静态属性里">
+<meta property="og:url" content="https://yffjglcms.com/2019/11/02/spring中将配置文件的属性注入到静态属性里/index.html">
 <meta property="og:site_name" content="雨纷纷—旧故里草木深">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-12-17T02:36:18.464Z">
+<meta property="og:updated_time" content="2021-12-17T02:35:49.687Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows-运行关闭jar包cmd脚本">
+<meta name="twitter:title" content="spring中将配置文件的属性注入到静态属性里">
 <meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
 
 
@@ -30,8 +30,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="/loli.css">
-<link rel="stylesheet" href="/loli.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
 
@@ -64,15 +64,6 @@
 
     
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WVHW2QTX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L4WVHW2QTX');
-</script>
-
 
     
     
@@ -80,7 +71,7 @@
 var _hmt = _hmt || [];
 (function() {
     var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?80c986fb5a9da2d8df927d6c020b23b5";
+    hm.src = "//hm.baidu.com/hm.js?3418be4c8d8912fb87fbbc0b46c1a486";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
@@ -96,10 +87,6 @@ var _hmt = _hmt || [];
 
     
     
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
     
 
 
@@ -121,7 +108,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/akoala.jpg" alt="windows-运行关闭jar包cmd脚本" height="28">
+                <img src="/images/akoala.jpg" alt="spring中将配置文件的属性注入到静态属性里" height="28">
             
             </a>
         </div>
@@ -167,7 +154,7 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time>
+                <time class="level-item has-text-grey" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/code/">code</a>
@@ -177,44 +164,34 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 250 个字)
+                    1 分钟 读完 (大约 183 个字)
                 </span>
                 
 
-                <!-- <span id="/2019/08/26/old/windows-运行关闭jar包cmd脚本/" class="leancloud-visitors view" data-flag-title="windows-运行关闭jar包cmd脚本">
+                <!-- <span id="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="leancloud-visitors view" data-flag-title="spring中将配置文件的属性注入到静态属性里">
                     <em class="post-meta-item-text">阅读量 </em>
                     <i class="leancloud-visitors-count">loading</i>
                 </span> -->
 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                windows-运行关闭jar包cmd脚本
+                spring中将配置文件的属性注入到静态属性里
             
         </h1>
         <div class="content">
-            <!-- ![](https://i.loli.net/2020/01/08/m9aWsZgrMkCXnxG.jpg) -->
+            <!-- ![](https://i.loli.net/2019/11/26/IOCUvxrVcesMJab.jpg) -->
 <a id="more"></a>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>如在工具类中，不想将该工具类被spring管理，通过引用其他类的的静态属性获取值。</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#局域网地址</span><br><span class="line">file.lanServer=\\\\DESKTOP-3FE3ORR\\app\\</span><br><span class="line">#app下载地址</span><br><span class="line">file.remoteServer=http://127.0.0.1:8080/app/</span><br><span class="line">file.fileUploadDir=H:/vadx</span><br><span class="line">file.relatePath=/vadx/app</span><br></pre></td></tr></table></figure>
 
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|--web</span><br><span class="line">    |-- appname.txt     // 存放jar包名字</span><br><span class="line">    |-- xxx.jar         //  jar包</span><br><span class="line">    |-- run.bat         // 前台启动脚本</span><br><span class="line">    |-- run-demo.bat    // 后台启动脚本</span><br><span class="line">    |-- stop.bat        // 停止脚本</span><br></pre></td></tr></table></figure>
+<h2 id="新建类-如文件路径配置"><a href="#新建类-如文件路径配置" class="headerlink" title="新建类, 如文件路径配置"></a>新建类, 如文件路径配置</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Component</span></span><br><span class="line"><span class="hljs-meta">@Getter</span></span><br><span class="line"><span class="hljs-meta">@Setter</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileProp</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String remoteServer;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String lanServer;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String fileUploadDir;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String relatePath;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.remoteServer&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRemoteServer</span><span class="hljs-params">(String remoteServer)</span> </span>&#123;</span><br><span class="line">        FileProp.remoteServer = remoteServer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.lanServer&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLanServer</span><span class="hljs-params">(String lanServer)</span> </span>&#123;</span><br><span class="line">        FileProp.lanServer = lanServer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.fileUploadDir&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFileUploadDir</span><span class="hljs-params">(String fileUploadDir)</span> </span>&#123;</span><br><span class="line">        FileProp.fileUploadDir = fileUploadDir;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;file.relatePath&#125;"</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRelatePath</span><span class="hljs-params">(String relatePath)</span> </span>&#123;</span><br><span class="line">        FileProp.relatePath = relatePath;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="前台启动脚本"><a href="#前台启动脚本" class="headerlink" title="前台启动脚本"></a>前台启动脚本</h1><figure class="highlight cmd hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">chcp</span> <span class="hljs-number">65001</span></span><br><span class="line"><span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%j</span> <span class="hljs-keyword">in</span> ('<span class="hljs-built_in">findstr</span> .* appname.txt') <span class="hljs-keyword">do</span> (</span><br><span class="line">	<span class="hljs-built_in">title</span> <span class="hljs-variable">%%j</span></span><br><span class="line">	java -jar -Dfile.encoding=UTF-8 -Dlogging.config=config/logback.xml -Dspring.profiles.active=pro -Dmybatis-plus.mapper-locations=file:config/mapper/*.xml "%%j" -Xms50m -Xmx1024m</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="使用，在工具类中使用"><a href="#使用，在工具类中使用" class="headerlink" title="使用，在工具类中使用"></a>使用，在工具类中使用</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Slf</span>4j</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UploadFileUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//项目前缀路径</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String destFile = FileProp.fileUploadDir;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="后台启动脚本"><a href="#后台启动脚本" class="headerlink" title="后台启动脚本"></a>后台启动脚本</h1><figure class="highlight cmd hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">chcp</span> <span class="hljs-number">65001</span></span><br><span class="line"><span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%j</span> <span class="hljs-keyword">in</span> ('<span class="hljs-built_in">findstr</span> .* appname.txt') <span class="hljs-keyword">do</span> (</span><br><span class="line">	<span class="hljs-built_in">title</span> <span class="hljs-variable">%%j</span></span><br><span class="line">	start javaw -jar -Dlogging.config=config/logback.xml -Dspring.profiles.active=pro -Dmybatis-plus.mapper-locations=file:config/mapper/*.xml "%%j" -Xms256m -Xmx1g -Xss256k</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h1 id="停止脚本"><a href="#停止脚本" class="headerlink" title="停止脚本"></a>停止脚本</h1><p>注：<code>&quot;C:\Program Files\Java\jdk1.8.0_131\bin\jps&quot;</code> 为jdk工具包</p>
-<figure class="highlight cmd hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-built_in">echo</span> off</span><br><span class="line">:: 找到jar的pid进程，并杀死</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%j</span> <span class="hljs-keyword">in</span> ('<span class="hljs-built_in">findstr</span> .* appname.txt') <span class="hljs-keyword">do</span> (</span><br><span class="line">	<span class="hljs-keyword">for</span> /f "tokens=<span class="hljs-number">1</span>" <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> ('"C:\Program Files\Java\jdk1.<span class="hljs-number">8</span>.<span class="hljs-number">0</span>_131\bin\jps" -l ^| <span class="hljs-built_in">findstr</span> <span class="hljs-variable">%%j</span>') <span class="hljs-keyword">do</span> (</span><br><span class="line">		<span class="hljs-built_in">set</span> n=<span class="hljs-variable">%%i</span></span><br><span class="line">	)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">taskkill</span> /f /pid <span class="hljs-variable">%n%</span></span><br><span class="line"><span class="hljs-built_in">set</span> n=</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">exit</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.jianshu.com/p/bcffbc009a79" target="_blank" rel="noopener">win bat脚本 后台运行jar包</a>    </p>
-<p><a href="https://www.iteye.com/blog/chainhou-1872938" target="_blank" rel="noopener">获取当前用户所有java进程及jps命令的实现</a>    </p>
 
         </div>
         
@@ -222,7 +199,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/cmd/">cmd</a>, <a class="has-link-grey -link" href="/tags/jar/">jar</a>, <a class="has-link-grey -link" href="/tags/windows/">windows</a>
+                    <a class="has-link-grey -link" href="/tags/spring/">spring</a>
                 </div>
             </div>
         </div>
@@ -244,16 +221,16 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/02/old/spring中将配置文件的属性注入到静态属性里/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/06/09/Spring Cloud Gateway 的使用/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">spring中将配置文件的属性注入到静态属性里</span>
+                <span class="level-item">Spring Cloud Gateway 的使用</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/20/old/IDEA打印彩色日志/">
-                <span class="level-item">IDEA打印彩色日志</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/26/windows-运行关闭jar包cmd脚本/">
+                <span class="level-item">windows-运行关闭jar包cmd脚本</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -269,12 +246,12 @@ var _hmt = _hmt || [];
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2019/08/26/old/windows-运行关闭jar包cmd脚本/';
-        this.page.identifier = '2019/08/26/old/windows-运行关闭jar包cmd脚本/';
+        this.page.url = 'https://yffjglcms.com/2019/11/02/spring中将配置文件的属性注入到静态属性里/';
+        this.page.identifier = '2019/11/02/spring中将配置文件的属性注入到静态属性里/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'https-yffjglcms-com' + '.disqus.com/embed.js';
+        s.src = '//' + 'akoala' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -296,17 +273,50 @@ var _hmt = _hmt || [];
 <div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#场景">
+        <span class="has-mr-6">1</span>
+        <span>场景</span>
+        </a></li><li>
+        <a class="is-flex" href="#步骤">
+        <span class="has-mr-6">2</span>
+        <span>步骤</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#application-properties">
+        <span class="has-mr-6">2.1</span>
+        <span>application.properties</span>
+        </a></li><li>
+        <a class="is-flex" href="#新建类-如文件路径配置">
+        <span class="has-mr-6">2.2</span>
+        <span>新建类, 如文件路径配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用，在工具类中使用">
+        <span class="has-mr-6">2.3</span>
+        <span>使用，在工具类中使用</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
             <div class="level-item has-text-centered" style="flex-shrink: 1">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="yffjglcms">
+                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="A Koala">
                     
                     
                     <p class="is-size-4 is-block">
-                        yffjglcms
+                        A Koala
                     </p>
                     
                     
@@ -361,34 +371,12 @@ var _hmt = _hmt || [];
 </div>
     
         
-<div class="card widget" id="toc">
+<div class="card widget">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#项目结构">
-        <span class="has-mr-6">1</span>
-        <span>项目结构</span>
-        </a></li><li>
-        <a class="is-flex" href="#前台启动脚本">
-        <span class="has-mr-6">2</span>
-        <span>前台启动脚本</span>
-        </a></li><li>
-        <a class="is-flex" href="#后台启动脚本">
-        <span class="has-mr-6">3</span>
-        <span>后台启动脚本</span>
-        </a></li><li>
-        <a class="is-flex" href="#停止脚本">
-        <span class="has-mr-6">4</span>
-        <span>停止脚本</span>
-        </a></li><li>
-        <a class="is-flex" href="#参考">
-        <span class="has-mr-6">5</span>
-        <span>参考</span>
-        </a></li></ul>
-        </div>
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
     </div>
 </div>
 
@@ -397,9 +385,74 @@ var _hmt = _hmt || [];
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            标签云
+            最新文章
         </h3>
-        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-12-17T04:35:13.000Z">2021-12-17</time></div>
+                    <a href="/2021/12/17/各种开发工具国内加速配置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">各种开发工具国内加速配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-20T03:35:13.000Z">2020-10-20</time></div>
+                    <a href="/2020/10/20/PowerMock使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PowerMock使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T03:35:13.000Z">2020-06-09</time></div>
+                    <a href="/2020/06/09/Spring Cloud Gateway 的使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud Gateway 的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time></div>
+                    <a href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="title has-link-black-ter is-size-6 has-text-weight-normal">spring中将配置文件的属性注入到静态属性里</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-26T06:41:09.000Z">2019-08-26</time></div>
+                    <a href="/2019/08/26/windows-运行关闭jar包cmd脚本/" class="title has-link-black-ter is-size-6 has-text-weight-normal">windows-运行关闭jar包cmd脚本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -545,17 +598,12 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="/images/akoala.jpg" alt="windows-运行关闭jar包cmd脚本" height="28">
+                    <img src="/images/akoala.jpg" alt="spring中将配置文件的属性注入到静态属性里" height="28">
                     
                 </a>
                 <p class="is-size-7">
-                    &copy; 2021 yffjglcms&nbsp;
+                    &copy; 2022 yffjglcms&nbsp;
                     Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                    
-                    <br>
-                    <span id="busuanzi_container_site_uv">
-                        共<span id="busuanzi_value_site_uv">0</span>个访客
-                    </span>
                     
                 </p>
             </div>
@@ -653,8 +701,6 @@ var IcarusThemeSettings = {
     
     
     
-    
-
     
 
 
