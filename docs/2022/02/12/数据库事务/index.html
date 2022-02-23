@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>数据库事务---特性、隔离级别、传播行为 - 雨纷纷—旧故里草木深</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="数据库事务特性原子性、一致性、隔离性、持久性">
+<meta name="keywords" content="mysql,数据库,db,隔离级别,传播行为,事务特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库事务---特性、隔离级别、传播行为">
+<meta property="og:url" content="https://yffjglcms.com/2022/02/12/数据库事务/index.html">
+<meta property="og:site_name" content="雨纷纷—旧故里草木深">
+<meta property="og:description" content="数据库事务特性原子性、一致性、隔离性、持久性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
+<meta property="og:updated_time" content="2022-02-23T02:40:19.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库事务---特性、隔离级别、传播行为">
+<meta name="twitter:description" content="数据库事务特性原子性、一致性、隔离性、持久性">
+<meta name="twitter:image" content="https://yffjglcms.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/akoala.jpg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?3418be4c8d8912fb87fbbc0b46c1a486";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+        <!-- 新增 jsdeliv cdn 支持 start -->
+        <!-- {% assign assets_base_url = site.url %}
+        {% if site.cdn.jsdelivr.enabled %}
+        {% assign assets_base_url = "https://cdn.jsdelivr.net/gh/" | append: site.repository %}
+        {% endif %} -->
+        <!-- 新增 jsdeliv cdn 支持 end -->
+
+    <meta name="google-site-verification" content="8ObTjhVsmvFtANcK1gJBFiZWapC-h4akhkO1nPKS_lE">
+</head>
+
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/akoala.jpg" alt="数据库事务---特性、隔离级别、传播行为" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10-tablet is-10-desktop is-10-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2022-02-12T04:35:13.000Z">2022-02-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/code/">code</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 762 个字)
+                </span>
+                
+
+                <!-- <span id="/2022/02/12/数据库事务/" class="leancloud-visitors view" data-flag-title="数据库事务---特性、隔离级别、传播行为">
+                    <em class="post-meta-item-text">阅读量 </em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span> -->
+
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                数据库事务---特性、隔离级别、传播行为
+            
+        </h1>
+        <div class="content">
+            <h1 id="数据库事务特性"><a href="#数据库事务特性" class="headerlink" title="数据库事务特性"></a>数据库事务特性</h1><p>原子性、一致性、隔离性、持久性</p>
+<a id="more"></a>
+
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>一个事务表示 一组操作不可分割，要么同时成功，要么同时失败。如果中间发生错误，进行回滚，回到未执行之前的状态。</p>
+<h2 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h2><p>事务开启前后，数据约束保证一致，业务逻辑保证一致。数据约束一致，比如保证外键约束，唯一约束等不被破坏。业务逻辑一致，比如存取款，保证金额总和一致。</p>
+<h2 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h2><p>多个事务之间独立，根据隔离级别，保证事务中的读写执行中，数据的一致性。比如A事物的读，发生在B事物写之后，A是读B写之前的数据，还是之后的数据。</p>
+<h2 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h2><p>事务处理结束后，保证对数据的修改是永久的。</p>
+<h1 id="数据库隔离级别"><a href="#数据库隔离级别" class="headerlink" title="数据库隔离级别"></a>数据库隔离级别</h1><p>读未提交、读已提交、重复读、序列化</p>
+<h2 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h2><p>A 事务可以读到 B事务中，未提交的修改的数据。</p>
+<h2 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h2><p>A 事务可以读到 B事务提交后的数据，即A事务 在 B 事务 提交前后，进行读取，可能会出现不一样的数据。</p>
+<h2 id="重复读"><a href="#重复读" class="headerlink" title="重复读"></a>重复读</h2><p>A事务 在 B 事务 提交前后，进行读取，读取的数据是一样的，即不受 B 事务的影响，不过这里局限于 Update 操作；Insert 操作的数据还是会读取到。MySQL 默认是此级别。</p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>A事务 和B事务 串行执行，不会出现以上情况，但此时性能较差。</p>
+<h1 id="Spring的七种事物传播行为"><a href="#Spring的七种事物传播行为" class="headerlink" title="Spring的七种事物传播行为"></a>Spring的七种事物传播行为</h1><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROPAGATION_REQUIRED</td>
+<td>如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。这是最常见的选择。</td>
+</tr>
+<tr>
+<td>PROPAGATION_SUPPORTS</td>
+<td>支持当前事务，如果当前没有事务，就以非事务方式执行。</td>
+</tr>
+<tr>
+<td>PROPAGATION_MANDATORY</td>
+<td>使用当前的事务，如果当前没有事务，就抛出异常。</td>
+</tr>
+<tr>
+<td>PROPAGATION_REQUIRES_NEW</td>
+<td>新建事务，如果当前存在事务，把当前事务挂起。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NOT_SUPPORTED</td>
+<td>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NEVER</td>
+<td>以非事务方式执行，如果当前存在事务，则抛出异常。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NESTED</td>
+<td>如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作。</td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>理解事务的4种隔离级别: <a href="https://blog.csdn.net/qq_33290787/article/details/51924963" target="_blank" rel="noopener">https://blog.csdn.net/qq_33290787/article/details/51924963</a></p>
+<p>数据库事务ACID特性: <a href="https://blog.csdn.net/u012440687/article/details/52116108" target="_blank" rel="noopener">https://blog.csdn.net/u012440687/article/details/52116108</a></p>
+<p>Spring事务传播行为详解: <a href="https://segmentfault.com/a/1190000013341344" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013341344</a></p>
+<p>关于PROPAGATION_NESTED的理解: <a href="https://blog.csdn.net/yanxin1213/article/details/100582643" target="_blank" rel="noopener">https://blog.csdn.net/yanxin1213/article/details/100582643</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/db/">db</a>, <a class="has-link-grey -link" href="/tags/mysql/">mysql</a>, <a class="has-link-grey -link" href="/tags/事务特性/">事务特性</a>, <a class="has-link-grey -link" href="/tags/传播行为/">传播行为</a>, <a class="has-link-grey -link" href="/tags/数据库/">数据库</a>, <a class="has-link-grey -link" href="/tags/隔离级别/">隔离级别</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2021/12/17/各种开发工具国内加速配置/">
+                <span class="level-item">各种开发工具国内加速配置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://yffjglcms.com/2022/02/12/数据库事务/';
+        this.page.identifier = '2022/02/12/数据库事务/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'akoala' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#数据库事务特性">
+        <span class="has-mr-6">1</span>
+        <span>数据库事务特性</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#原子性">
+        <span class="has-mr-6">1.1</span>
+        <span>原子性</span>
+        </a></li><li>
+        <a class="is-flex" href="#一致性">
+        <span class="has-mr-6">1.2</span>
+        <span>一致性</span>
+        </a></li><li>
+        <a class="is-flex" href="#隔离性">
+        <span class="has-mr-6">1.3</span>
+        <span>隔离性</span>
+        </a></li><li>
+        <a class="is-flex" href="#持久性">
+        <span class="has-mr-6">1.4</span>
+        <span>持久性</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#数据库隔离级别">
+        <span class="has-mr-6">2</span>
+        <span>数据库隔离级别</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#读未提交">
+        <span class="has-mr-6">2.1</span>
+        <span>读未提交</span>
+        </a></li><li>
+        <a class="is-flex" href="#读已提交">
+        <span class="has-mr-6">2.2</span>
+        <span>读已提交</span>
+        </a></li><li>
+        <a class="is-flex" href="#重复读">
+        <span class="has-mr-6">2.3</span>
+        <span>重复读</span>
+        </a></li><li>
+        <a class="is-flex" href="#序列化">
+        <span class="has-mr-6">2.4</span>
+        <span>序列化</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Spring的七种事物传播行为">
+        <span class="has-mr-6">3</span>
+        <span>Spring的七种事物传播行为</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">4</span>
+        <span>参考</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/akoala.jpg" alt="A Koala">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        A Koala
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shen Zhen</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        1
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        26
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/iaoongin" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/containerd/" style="font-size: 10px;">containerd</a> <a href="/tags/db/" style="font-size: 10px;">db</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 20px;">elk</a> <a href="/tags/gateway/" style="font-size: 10px;">gateway</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/jar/" style="font-size: 10px;">jar</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/logstash/" style="font-size: 20px;">logstash</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a> <a href="/tags/事务特性/" style="font-size: 10px;">事务特性</a> <a href="/tags/传播行为/" style="font-size: 10px;">传播行为</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/隔离级别/" style="font-size: 10px;">隔离级别</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2022-02-12T04:35:13.000Z">2022-02-12</time></div>
+                    <a href="/2022/02/12/数据库事务/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数据库事务---特性、隔离级别、传播行为</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-12-17T04:35:13.000Z">2021-12-17</time></div>
+                    <a href="/2021/12/17/各种开发工具国内加速配置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">各种开发工具国内加速配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-20T03:35:13.000Z">2020-10-20</time></div>
+                    <a href="/2020/10/20/PowerMock使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PowerMock使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T03:35:13.000Z">2020-06-09</time></div>
+                    <a href="/2020/06/09/Spring Cloud Gateway 的使用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud Gateway 的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T01:53:54.000Z">2019-11-02</time></div>
+                    <a href="/2019/11/02/spring中将配置文件的属性注入到静态属性里/" class="title has-link-black-ter is-size-6 has-text-weight-normal">spring中将配置文件的属性注入到静态属性里</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/code/">code</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/code/">
+            <span class="level-start">
+                <span class="level-item">code</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2022/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2022</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://gitee.com/iaoongin" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Gitee</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">gitee.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/iaoongin" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="/images/akoala.jpg" alt="数据库事务---特性、隔离级别、传播行为" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2022 yffjglcms&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <span id="busuanzi_container_site_uv">
+                        共<span id="busuanzi_value_site_uv">0</span>个访客
+                    </span>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                <span id="busuanzi_container_site_pv" class="theme-info">
+                    本站总访问量<span id="busuanzi_value_site_pv"> </span>次
+                </span>
+                <span id="busuanzi_container_site_uv" class="theme-info">
+                    | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span> -->
+            </div>
+
+
+        </div>
+    </div>
+
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/snow.js"><\/script>');
+        }
+    </script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+</html>
