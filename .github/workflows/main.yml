@@ -7,7 +7,7 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: [ source ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,7 +21,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with: 
-          ref: 'source'
+          ref: 'master'
       # Runs a single command using the runners shell
 
       - name: Setup Node.js environment
@@ -44,5 +44,5 @@ jobs:
           # Git branch where assets will be deployed
           target_branch: master # optional, default is gh-pages
           # Build directory to deploy
-          build_dir: ./docs
+          build_dir: ./
 
