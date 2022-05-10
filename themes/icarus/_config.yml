@@ -74,8 +74,16 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
     # Name of the comment plugin
-    type: disqus
-    shortname: akoala
+    # type: disqus
+    # shortname: akoala
+    
+    type: gitalk
+    client_id: 6c584ea73b91f19f7869
+    client_secret: 6e1f1c7d7dbe90c1fa93275dc3fed68a80e5a63a
+    repo: iaoongin.github.io
+    owner: iaoongin
+    admin:
+        - iaoongin
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 # donate:
