@@ -84,6 +84,7 @@ comment:
     owner: iaoongin
     admin:
         - iaoongin
+    create_issue_manually: false
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 # donate:
