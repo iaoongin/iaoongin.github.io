@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介​各种开发工具配置国内加速">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2022-05-09T10:06:33.259Z">
+<meta property="og:updated_time" content="2022-05-10T02:11:51.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种开发工具国内加速配置">
 <meta name="twitter:description" content="简介​各种开发工具配置国内加速">
@@ -317,23 +317,23 @@ var _hmt = _hmt || [];
     <div class="card-content">
         <h3 class="title is-5 has-text-weight-normal">评论</h3>
         
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'https://yffjglcms.com/2021/12/17/各种开发工具国内加速配置/';
-        this.page.identifier = '2021/12/17/各种开发工具国内加速配置/';
-    };
-    (function() {
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'akoala' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    var gitalk = new Gitalk({
+        clientID: '6c584ea73b91f19f7869',
+        clientSecret: '6e1f1c7d7dbe90c1fa93275dc3fed68a80e5a63a',
+        id: 'd086de65f1f5d8e0e6ce57cff7a8fb05',
+        repo: 'iaoongin.github.io',
+        owner: 'iaoongin',
+        admin: ["iaoongin"],
+        createIssueManually: false,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
 </script>
 
-<div id="disqus_thread">
-    
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
     </div>
 </div>
 </div>
