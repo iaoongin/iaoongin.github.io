@@ -85,7 +85,6 @@ comment:
     admin:
         - iaoongin
     create_issue_manually: false
-    proxy: false
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 # donate:
