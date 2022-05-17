@@ -17,7 +17,7 @@
 <meta property="og:description" content="原神除草机来了 (ಥ_ಥ) ，让你体验抽卡模拟器，拥有全满命角色。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yffjglcms.com/images/og_image.png">
-<meta property="og:updated_time" content="2022-05-12T10:26:14.105Z">
+<meta property="og:updated_time" content="2022-05-16T20:11:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原神私服 - 使用 docker-compose 搭建服务端">
 <meta name="twitter:description" content="原神除草机来了 (ಥ_ಥ) ，让你体验抽卡模拟器，拥有全满命角色。">
@@ -171,6 +171,8 @@ var _hmt = _hmt || [];
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2022-05-08T17:11:21.000Z">2022-05-08</time>
+                <span class="level-item has-text-grey">(最后更新<time class="level-item has-text-grey" datetime="2022-05-16T20:11:21.000Z">2022-05-16</time>)</span>
+
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/game/">game</a>
@@ -180,7 +182,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 289 个字)
+                    2 分钟 读完 (大约 346 个字)
                 </span>
                 
 
@@ -221,6 +223,12 @@ var _hmt = _hmt || [];
 <h3 id="创建文件-opt-grasscutter-entrypoint-sh"><a href="#创建文件-opt-grasscutter-entrypoint-sh" class="headerlink" title="创建文件 /opt/grasscutter/entrypoint.sh"></a>创建文件 <code>/opt/grasscutter/entrypoint.sh</code></h3><p>修改项：</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/akbaryahya/DockerGC/d377538bae92a1826e3a50c647023e80dab37d62/gc/entrypoint.sh</span><br><span class="line"></span><br><span class="line">sed -i "/# Config ip/a\ json -q -I -f config.json -e \"this.DispatchServer.Port=444\"" entrypoint.sh</span><br></pre></td></tr></table></figure>
 
+<h3 id="获取-resources-数据"><a href="#获取-resources-数据" class="headerlink" title="获取 resources  数据"></a>获取 <code>resources</code>  数据</h3><ul>
+<li><p>方式1<br>将 <code>grasscutter.command</code> 中的 <code># -f &#39;yes&#39;</code>  取消注释，运行后会按脚本内方式拉取。</p>
+</li>
+<li><p>方式2<br>使用 <code>git clone https://e.coding.net/iaoongin/grasscutters/GenshinData.git</code> 拉取，将文件放到 <code>./resources</code> 下面</p>
+</li>
+</ul>
 <h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <h2 id="客户端教程待续…"><a href="#客户端教程待续…" class="headerlink" title="客户端教程待续…"></a>客户端教程待续…</h2><h2 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h2><p>Grasscutter 官方项目：<a href="https://github.com/Grasscutters/Grasscutter" target="_blank" rel="noopener">https://github.com/Grasscutters/Grasscutter</a><br>GenshinData 数据包: <a href="https://github.com/Dimbreath/GenshinData" target="_blank" rel="noopener">https://github.com/Dimbreath/GenshinData</a><br>DockerGC 容器化项目：<a href="https://github.com/akbaryahya/DockerGC" target="_blank" rel="noopener">https://github.com/akbaryahya/DockerGC</a><br>GrasscutterCommandGenerator 指令生成器： <a href="https://github.com/jie65535/GrasscutterCommandGenerator" target="_blank" rel="noopener">https://github.com/jie65535/GrasscutterCommandGenerator</a><br>GrassClipper-X 原神代理启动器：<a href="https://github.com/Grasscutters/GrassClipper-X" target="_blank" rel="noopener">https://github.com/Grasscutters/GrassClipper-X</a></p>
@@ -323,8 +331,12 @@ var _hmt = _hmt || [];
         <span class="has-mr-6">2.2</span>
         <span>创建文件 /opt/grasscutter/entrypoint.sh</span>
         </a></li><li>
-        <a class="is-flex" href="#启动服务">
+        <a class="is-flex" href="#获取-resources-数据">
         <span class="has-mr-6">2.3</span>
+        <span>获取 resources  数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#启动服务">
+        <span class="has-mr-6">2.4</span>
         <span>启动服务</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#客户端教程待续…">
