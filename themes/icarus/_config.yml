@@ -140,7 +140,7 @@ widgets:
         # Widget name
         type: profile
         # Where should the widget be placed, left or right
-        position: right
+        position: placed
         # Author name to be shown in the profile widget
         author: A Koala
         # Title of the author to be shown in the profile widget
@@ -182,7 +182,7 @@ widgets:
         # Widget name
         type: recent_posts
         # Where should the widget be placed, left or right
-        position: right
+        position: placed
     -
         # Widget name
         type: category
@@ -192,7 +192,7 @@ widgets:
         # Widget name
         type: archive
         # Where should the widget be placed, left or right
-        position: right
+        position: placed
     # -
     #     # Widget name
     #     type: tag
@@ -247,7 +247,7 @@ plugins:
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
     # Name or URL of the JavaScript and/or stylesheet CDN provider
-    cdn: jsdelivr
+    cdn: unpkg
     # Name or URL of the webfont CDN provider
     fontcdn: google
     # Name or URL of the webfont Icon CDN provider
