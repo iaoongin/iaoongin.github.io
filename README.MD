@@ -1,10 +1,11 @@
 # 环境要求
 
-## node 10.16.2
+## node 20.12.2
 
-## hexo 
+## hexo 7.3.0
 
-npm install -g hexo-cli
+`npm install -g hexo-cli` 安装hexo
 
-hexo s 本地运行
-hexo g 生成静态文件
+`hexo s` 本地运行
+
+`hexo g` 生成静态文件
