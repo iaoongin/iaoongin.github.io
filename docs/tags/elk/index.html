@@ -173,6 +173,63 @@ var _hmt = _hmt || [];
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-08-14T17:23:29.000Z">2019-08-14</time>
+                <!-- <span class="level-item has-text-grey">(最后更新<time class="level-item has-text-grey" datetime="2024-08-24T14:09:29.115Z">2024-08-24</time>)</span> -->
+
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 272 个字)
+                </span>
+                
+
+                <!-- <span id="/2019/08/14/logstash 分页优化/" class="leancloud-visitors view" data-flag-title="logstash input-jdbc 分页性能优化问题">
+                    <em class="post-meta-item-text">阅读量 </em>
+                    <i class="leancloud-visitors-count">loading</i>
+                </span> -->
+
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/14/logstash 分页优化/">logstash input-jdbc 分页性能优化问题</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/08/14/logstash 分页优化/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-14T17:23:29.000Z">2019-08-14</time>
                 <!-- <span class="level-item has-text-grey">(最后更新<time class="level-item has-text-grey" datetime="2019-08-16T10:10:29.000Z">2019-08-16</time>)</span> -->
 
                 
@@ -211,63 +268,6 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                 <a class="button is-size-7 is-light" href="/2019/08/14/logstash-分页优化/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-14T17:23:29.000Z">2019-08-14</time>
-                <!-- <span class="level-item has-text-grey">(最后更新<time class="level-item has-text-grey" datetime="2024-08-24T08:39:19.733Z">2024-08-24</time>)</span> -->
-
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 272 个字)
-                </span>
-                
-
-                <!-- <span id="/2019/08/14/logstash 分页优化/" class="leancloud-visitors view" data-flag-title="logstash input-jdbc 分页性能优化问题">
-                    <em class="post-meta-item-text">阅读量 </em>
-                    <i class="leancloud-visitors-count">loading</i>
-                </span> -->
-
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/14/logstash 分页优化/">logstash input-jdbc 分页性能优化问题</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>logstash 自带分页查询,竟然是查处所有数据再计数的。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*) AS `count` FROM (SELECT * FROM ip_bundle_data_20190813) AS `t1` LIMIT 1</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/14/logstash 分页优化/#more">阅读更多</a>
                 </div>
             </div>
         </div>
